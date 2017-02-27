@@ -2,10 +2,10 @@
 
 one:
   description: MyText
-  service_id: one
+  service: one
   status: 1
 
 two:
   description: MyText
-  service_id: two
+  service: two
   status: 1

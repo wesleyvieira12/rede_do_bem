@@ -2,10 +2,10 @@
 
 one:
   name: MyString
-  state_id: one
+  state: one
   status: 1
 
 two:
   name: MyString
-  state_id: two
+  state: two
   status: 1

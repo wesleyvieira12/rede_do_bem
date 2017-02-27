@@ -7,7 +7,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:service_id_id) %></th>
+      <th><%= model_class.human_attribute_name(:service_id) %></th>
       <th><%= model_class.human_attribute_name(:status) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -18,7 +18,7 @@
       <tr>
         <td><%= link_to comment.id, comment_path(comment) %></td>
         <td><%= comment.description %></td>
-        <td><%= comment.service_id_id %></td>
+        <td><%= comment.service_id %></td>
         <td><%= comment.status %></td>
         <td><%=l comment.created_at %></td>
         <td>

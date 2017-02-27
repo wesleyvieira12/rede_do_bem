@@ -1,4 +1,3 @@
-
 <%- model_class = City -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
@@ -8,7 +7,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:state_id_id) %></th>
+      <th><%= model_class.human_attribute_name(:state_id) %></th>
       <th><%= model_class.human_attribute_name(:status) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -19,7 +18,7 @@
       <tr>
         <td><%= link_to city.id, city_path(city) %></td>
         <td><%= city.name %></td>
-        <td><%= city.state_id_id %></td>
+        <td><%= city.state_id %></td>
         <td><%= city.status %></td>
         <td><%=l city.created_at %></td>
         <td>

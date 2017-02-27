@@ -2,14 +2,14 @@
 
 one:
   name: MyString
-  city_id: one
-  category_id: one
+  city: one
+  category: one
   kind: 1
   status: 1
 
 two:
   name: MyString
-  city_id: two
-  category_id: two
+  city: two
+  category: two
   kind: 1
   status: 1

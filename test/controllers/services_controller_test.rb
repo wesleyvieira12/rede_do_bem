@@ -17,7 +17,7 @@ class ServicesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create service" do
     assert_difference('Service.count') do
-      post services_url, params: { service: { description: @service.description, status: @service.status, user_client_id_id: @service.user_client_id_id, user_professional_id_id: @service.user_professional_id_id } }
+      post services_url, params: { service: { description: @service.description, status: @service.status, user_client_id: @service.user_client_id, user_professional_id: @service.user_professional_id } }
     end
 
     assert_redirected_to service_url(Service.last)
@@ -34,7 +34,7 @@ class ServicesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update service" do
-    patch service_url(@service), params: { service: { description: @service.description, status: @service.status, user_client_id_id: @service.user_client_id_id, user_professional_id_id: @service.user_professional_id_id } }
+    patch service_url(@service), params: { service: { description: @service.description, status: @service.status, user_client_id: @service.user_client_id, user_professional_id: @service.user_professional_id } }
     assert_redirected_to service_url(@service)
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170227015815) do
+ActiveRecord::Schema.define(version: 20170227024336) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -21,31 +21,31 @@ ActiveRecord::Schema.define(version: 20170227015815) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
-    t.integer  "state_id_id"
+    t.integer  "state_id"
     t.integer  "status"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["state_id_id"], name: "index_cities_on_state_id_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["state_id"], name: "index_cities_on_state_id"
   end
 
   create_table "comments", force: :cascade do |t|
     t.text     "description"
-    t.integer  "service_id_id"
+    t.integer  "service_id"
     t.integer  "status"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["service_id_id"], name: "index_comments_on_service_id_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["service_id"], name: "index_comments_on_service_id"
   end
 
   create_table "services", force: :cascade do |t|
     t.string   "description"
-    t.integer  "user_client_id_id"
-    t.integer  "user_professional_id_id"
+    t.integer  "user_client_id"
+    t.integer  "user_professional_id"
     t.integer  "status"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.index ["user_client_id_id"], name: "index_services_on_user_client_id_id"
-    t.index ["user_professional_id_id"], name: "index_services_on_user_professional_id_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["user_client_id"], name: "index_services_on_user_client_id"
+    t.index ["user_professional_id"], name: "index_services_on_user_professional_id"
   end
 
   create_table "states", force: :cascade do |t|
@@ -57,14 +57,14 @@ ActiveRecord::Schema.define(version: 20170227015815) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.integer  "city_id_id"
-    t.integer  "category_id_id"
+    t.integer  "city_id"
+    t.integer  "category_id"
     t.integer  "kind"
     t.integer  "status"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["category_id_id"], name: "index_users_on_category_id_id"
-    t.index ["city_id_id"], name: "index_users_on_city_id_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_users_on_category_id"
+    t.index ["city_id"], name: "index_users_on_city_id"
   end
 
 end

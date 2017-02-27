@@ -39,6 +39,8 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
+    autoprefixer-rails (6.7.2)
+      execjs
     bootstrap_sb_admin_base_v2 (0.3.5)
       font-awesome-rails
       jquery-rails
@@ -52,7 +54,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     commonjs (0.2.7)
-    concurrent-ruby (1.0.4)
+    concurrent-ruby (1.0.5)
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.7.0)
@@ -76,7 +78,7 @@ GEM
       less (~> 2.6.0)
       sprockets (> 2, < 4)
       tilt
-    libv8 (3.16.14.17-x86_64-linux)
+    libv8 (3.16.14.17)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -177,6 +179,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autoprefixer-rails (~> 6.4)
   bootstrap_sb_admin_base_v2
   byebug
   coffee-rails (~> 4.2)
@@ -186,7 +189,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   puma (~> 3.0)
   rails (~> 5.0.1)
-  sass-rails (~> 5.0)
+  sass-rails (>= 5.0.6)
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3

@@ -2,12 +2,12 @@
 
 one:
   description: MyString
-  user_client_id: one
-  user_professional_id: one
+  user_client: one
+  user_professional: one
   status: 1
 
 two:
   description: MyString
-  user_client_id: two
-  user_professional_id: two
+  user_client: two
+  user_professional: two
   status: 1
