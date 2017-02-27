@@ -1,0 +1,65 @@
+pt_BR:
+  activerecord:
+    models:
+      category:
+        one: Categoria
+        other: Categoria
+      city:
+        one: Cidade
+        other: Cidades
+      comment:
+        one: Comentário
+        other: Comentários
+      service:
+        one: Serviço
+        other: Serviços
+      state:
+        one: Estado
+        other: Estados
+      user:
+        one: Usuario
+        other: Usuarios
+    attributes:
+      category:
+        id: '#'
+        name: Nome
+        status: Status
+        created_at: Criado em
+        updated_at: Atualizado em
+      city:
+        id: '#'
+        name: Nome
+        state_id: Estado
+        status: Status
+        created_at: Criado em
+        updated_at: Atualizado em
+      comment:
+        id: '#'
+        description: Descrição
+        service_id: Serviço
+        status: Status
+        created_at: Criado em
+        updated_at: Atualizado em
+      service:
+        id: '#'
+        description: Descrição
+        user_client_id: Cliente
+        user_professional_id: Profissional
+        status: Status
+        created_at: Criado em
+        updated_at: Atualizado em
+      state:
+        id: '#'
+        name: Nome
+        status: Status
+        created_at: Criado em
+        updated_at: Atualizado em
+      user:
+        id: '#'
+        name: Nome
+        city_id: Cidade
+        category_id: Categoria
+        kind: Tipo
+        status: Status
+        created_at: Criado em
+        updated_at: Atualizado em
