@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  city_id: one
+  category_id: one
+  kind: 1
+  status: 1
+
+two:
+  name: MyString
+  city_id: two
+  category_id: two
+  kind: 1
+  status: 1

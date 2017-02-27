@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :states
+  resources :cities
+  resources :comments
+  resources :services
+  resources :users
   resources :categories
   root to: 'painel#index'
 
