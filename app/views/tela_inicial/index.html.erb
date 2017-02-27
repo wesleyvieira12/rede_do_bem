@@ -1,0 +1,27 @@
+<style type="text/css">
+	body{
+		min-height: 100%;
+		background-position: center;
+		background-image: url('header.jpg');
+	}
+
+</style>
+<div class="container"> 
+        <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="login-panel panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Escolha sua cidade</h3>
+                        </div>
+                        <br>
+                        <%= form_tag(controller: "home", action: "index") do %>
+						  <label>Cidade</label>
+						  <%= select_tag(:id_cidade,options_from_collection_for_select(City.all, :id, :name),class: "form-control") %>
+						  <br>
+						  <%= submit_tag("Entrar", class: "btn btn-info form-control") %>	  
+						  
+						<% end %>
+                    </div>
+                </div>
+        </div>
+</div>

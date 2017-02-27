@@ -56,10 +56,12 @@ pt_BR:
         updated_at: Atualizado em
       user:
         id: '#'
-        name: Nome
+        email: E-mail
         city_id: Cidade
         category_id: Categoria
         kind: Tipo
+        name: Nome
+        password: Senha
         status: Status
         created_at: Criado em
         updated_at: Atualizado em

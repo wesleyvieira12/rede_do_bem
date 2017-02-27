@@ -22,9 +22,9 @@ cidade = City.create(name: 'Picos', state: estado, status: 0)
 
 puts "Criando usuários"
 
-usuario_cliente = User.create(name: 'Cliente', city: cidade, category: categoria, kind: 0, status: 0)
-usuario_profissional =User.create(name: 'Profissional', city: cidade, category: categoria, kind: 1, status: 0)
-usuario_administrador =User.create(name: 'Administrador', city: cidade, category: categoria, kind: 2, status: 0)
+usuario_cliente = User.create(name: 'Cliente', email: "cliente@email.com", password:"12345678", city: cidade, category: categoria, kind: 0, status: 0)
+usuario_profissional =User.create(name: 'Profissional', email: "profissional@email.com", password:"12345678", city: cidade, category: categoria, kind: 1, status: 0)
+usuario_administrador =User.create(name: 'Administrador', email: "administrador@email.com", password:"12345678", city: cidade, category: categoria, kind: 2, status: 0)
 
 
 ############### CRIAÇÃO DE SERVIÇOS #######################
