@@ -21,8 +21,7 @@ test:
   database: db/test.sqlite3
 
 production:
-  host: localhost
   adapter: postgresql
-  database: db/db_rede_do_bem
-  pool: 5
-  timeout: 5000
+  encoding: unicode
+  database: rededb_production
+  username: rededb
