@@ -36,6 +36,7 @@ puts "Criando Serviços"
 
 servico = Service.create(description: 'Sistema web para rede do bem', user_client_id: usuario_cliente, user_professional_id: usuario_profissional, status: 0)
 servico.save
+
 ############### CRIAÇÃO DE COMENTARIOS ####################
 
 puts "Criando comentarios"
