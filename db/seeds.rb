@@ -31,7 +31,7 @@ usuario_administrador =User.create(name: 'Administrador', email: "administrador@
 
 puts "Criando Serviços"
 
-servico = Service.create(description: 'Sistema web para rede do bem', user_client: usuario_cliente, user_professional: usuario_profissional, status: 0)
+servico = Service.create(description: 'Sistema web para rede do bem', user_client: usuario_cliente.id, user_professional: usuario_profissional.id, status: 0)
 
 ############### CRIAÇÃO DE COMENTARIOS ####################
 
