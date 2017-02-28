@@ -14,7 +14,7 @@
                             <h3 class="panel-title">Escolha sua cidade</h3>
                         </div>
                         <br>
-                        <%= form_tag(controller: "home", action: "index") do %>
+                        <%= form_tag(controller: "home", action: "index", method: "get") do %>
 						  <label>Cidade</label>
 						  <%= select_tag(:id_cidade,options_from_collection_for_select(City.all, :id, :name),class: "form-control") %>
 						  <br>
