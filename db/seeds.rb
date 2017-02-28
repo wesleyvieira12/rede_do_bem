@@ -34,7 +34,7 @@ usuario_administrador.save
 
 puts "Criando Serviços"
 
-servico = Service.create(description: 'Sistema web para rede do bem', user_client_id: usuario_cliente, user_professional_id: usuario_profissional, status: 0)
+servico = Service.create(description: 'Sistema web para rede do bem', user_client_id: 1, user_professional_id: 2, status: 0)
 servico.save
 
 ############### CRIAÇÃO DE COMENTARIOS ####################
