@@ -3,7 +3,7 @@ pt_BR:
     models:
       category:
         one: Categoria
-        other: Categoria
+        other: Categorias
       city:
         one: Cidade
         other: Cidades
