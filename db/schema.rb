@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170227131323) do
+ActiveRecord::Schema.define(version: 20170228151740) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -44,8 +44,6 @@ ActiveRecord::Schema.define(version: 20170227131323) do
     t.integer  "status"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
-    t.index ["user_client_id"], name: "index_services_on_user_client_id"
-    t.index ["user_professional_id"], name: "index_services_on_user_professional_id"
   end
 
   create_table "states", force: :cascade do |t|
