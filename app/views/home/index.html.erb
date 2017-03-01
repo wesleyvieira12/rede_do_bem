@@ -1,4 +1,5 @@
 
+        
 <div class="row" style="background: url(bg-pattern.png),linear-gradient(to left,#191970,#8A2BE2); color:#fff; margin:0; ">
 	<div class="row">
 	
@@ -8,21 +9,19 @@
     <h3 class="panel-title"><i class="fa fa-search"></i>Buscar profissionais</h3>
   </div>
   <div class="panel-body">
-  <form class="form-inline">
+  <%= search_form_for @q, class: "form-inline", url: busca_path, html: { method: :post } do |f| %>
     <div class="form-group">
 		<label>Categoria</label>
-		<select class="form-control">
-			<option>Selecione uma categoria</option>
-		</select>
+        <%= f.select :category_id_eq, options_from_collection_for_select(Category.all, "id", "name"),{include_blank: true}, {class: 'form-control'}%>
 	</div>
 	<div class="form-group ">
 		<label>Nome</label>
-		<input class="form-control" type="text" />
+		<%= f.search_field :name_cont %>
 	</div>
 	
 	
-		<button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
-	</form>
+		<%= f.submit class: "btn btn-info", value: "Pesquisar" %>
+	<% end %>
 	</div>
   </div>
 </div>
@@ -31,24 +30,14 @@
             <div class="row">
 
             <h1 style="margin-left:1em; " >CATEGORIAS</h1>
+             <% @users.each do |u|%>
 	            <div class="col-sm-3 text-center">
 	                <img class="img-rounded img-responsive img-center" src="https://www.galata.com.br/assets/images/icone-frontend-200x200-29.jpg"  alt="">
-	                <h4> Desenvolvedor </h4>
+	                <h4> <%= u.category.name%> </h4>
 	           
 	            </div>
-	            <div class="col-sm-3 text-center">
-	                <img class="img-rounded img-responsive img-center" src="http://zipanuncios.com.br/wp-content/uploads/Pedreiro-200x200.jpg" alt="">
-	                <h4> Pedreiro </h4>
-	            </div>
-	            <div class="col-sm-3 text-center">
-	                <img class="img-rounded img-responsive img-center" src="https://d1gkntzr8mxq7s.cloudfront.net/5436d4ebc1290.png" alt="">
-	                <h4> Engenheiro Eletrico </h4>  
-	            </div>
+            <% end %>
 	            
-	            <div class="col-sm-3 text-center">
-	                <img class="img-rounded img-responsive img-center" src="https://d1gkntzr8mxq7s.cloudfront.net/5436d4ebc1290.png" alt="">
-	                <h4> Engenheiro Eletrico </h4>  
-	            </div>
 	            
            	</div>
            	
@@ -63,21 +52,14 @@
   		<h2>ULTIMOS COMENTÁRIOS</h2>
   		<hr>
   		
-  		<blockquote>
-  		<p>Profissional: Wesley vieira</p>
-  <p>Comentário: Esta trabalhando com rapidez.</p>
-  <footer style="color: #000">Enviado por <strong>Cliente</strong></footer>
-</blockquote>
-<blockquote>
-  		<p>Profissional: Wesley vieira</p>
-  <p>Comentário: Esta trabalhando com rapidez.</p>
-  <footer style="color: #000">Enviado por <strong>Cliente</strong></footer>
-</blockquote>
-<blockquote>
-  		<p>Profissional: Wesley vieira</p>
-  <p>Comentário: Esta trabalhando com rapidez.</p>
-  <footer style="color: #000">Enviado por <strong>Cliente</strong></footer>
-</blockquote>
+        <% @comments.each do |c|%>
+      		<blockquote>
+      		    <p>Profissional: <%= c.service.user_professional.name%></p>
+                <p>Comentário: <%= c.description%></p>
+                <footer style="color: #000">Enviado por <strong>Cliente</strong></footer>
+            </blockquote>
+        <% end %>
+
   		</div>
 
   		<div class="row"  style="background: url(bg-pattern.png),linear-gradient(to left,#191970,#8A2BE2); color:#fff;">
@@ -137,21 +119,3 @@
 
         <!-- /.row -->
   		</div>
-<footer style="margin: 0; padding: 0;">
-<br>
-        <center>
-            <p>&copy; 2017 By I9SoluçõesWeb. Todos os direitos reservados.</p>
-            <!--<ul class="list-inline">
-                <li>
-                    <a href="#">Privacy</a>
-                </li>
-                <li>
-                    <a href="#">Terms</a>
-                </li>
-                <li>
-                    <a href="#">FAQ</a>
-                </li>
-            </ul>-->
-        </center>
-        <br>
-    </footer>

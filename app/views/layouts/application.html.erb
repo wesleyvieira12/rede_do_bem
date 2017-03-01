@@ -66,34 +66,62 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><i class="fa fa-globe"></i> Rede do Bem</a>
+                <%= link_to root_path, class: "navbar-brand" do%>
+                <i class="fa fa-globe"></i> Rede do Bem
+                <% end %>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling 
+            
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navbar-right">
+                    <% if user_signed_in? %>
                     <li>
-                        <a href="#">About</a>
+                        <%= link_to current_user.name, painel_path%>
+                    </li>
+                   
+
+                    <% else %>
+                    <li>
+                        <%= link_to "Entrar",new_user_session_path%>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <%= link_to "Cadastrar-se",new_user_registration_path%>
                     </li>
+                    <% end %>
+                    
                     <li>
-                        <a href="#">Contact</a>
+                        <%= link_to  alterar_cidade_path(1) do %>
+                          <%=@city.name + "-"+@city.state.name %> <small style="color: #fff">Alterar</small>
+                        <% end %>
                     </li>
                 </ul>
 
             </div>
-             -->
+             
         </div>
         <!-- /.container -->
     </nav>
     
-        <%= bootstrap_flash %>
+        
         <%= yield %>
-    
-
+        <footer style="margin: 0; padding: 0;">
+        <br>
+        <center>
+            <p>&copy; 2017 By I9SoluçõesWeb. Todos os direitos reservados.</p>
+            <!--<ul class="list-inline">
+                <li>
+                    <a href="#">Privacy</a>
+                </li>
+                <li>
+                    <a href="#">Terms</a>
+                </li>
+                <li>
+                    <a href="#">FAQ</a>
+                </li>
+            </ul>-->
+        </center>
+        <br>
+    </footer>
   <% else %>
-
 	<% if user_signed_in? %>
         <div id="wrapper">
         
@@ -294,7 +322,7 @@
                         
                     </li>
                     -->
-
+                    
                     <!--USUARIO-->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -308,7 +336,11 @@
                             <li><%= link_to destroy_user_session_path, method: :delete do%><i class="fa fa-sign-out fa-fw"></i> Sair <% end %>
                             </li>
                         </ul>
-                        <!-- FIM DO USUARIO -->
+                        
+                    </li>
+                    <!-- FIM DO USUARIO -->
+                    <li>
+                        <%= link_to "Voltar",root_path%>
                     </li>
                     
                 </ul>
@@ -389,27 +421,11 @@
         </div> 
 
     <% else  %>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-md-offset-4" style="text-align:center;">
-                    <h1>Painel Rede do Bem</h1>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-                    <div class="login-panel panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Faça seu Login</h3>
-
-                        </div>
+        
                         
                         <%= yield %>
-                        <%= bootstrap_flash %>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        
+                    
     <% end %>  
 
 <% end %>

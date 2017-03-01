@@ -7,11 +7,16 @@ Rails.application.routes.draw do
   resources :users
   resources :categories
 
+  #TELA INICIAL - Escolha das cidades
   root to: 'tela_inicial#index'  
-
-  get 'home', to: 'home#index'
+  get '/tela_inicial/:alterar', to:'tela_inicial#index', as: 'alterar_cidade'
+  
+  #TELA DE INICIO - CATEGORIAS, FOTOS, COMENTARIOS
   post 'home', to: 'home#index'
+  get 'home', to: 'home#index'
+  post 'busca', to: 'home#busca'
 
+  #PAINEL DO USUARIO
   get 'painel', to: 'painel#index'
 
   

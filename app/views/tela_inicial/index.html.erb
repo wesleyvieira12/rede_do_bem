@@ -2,7 +2,7 @@
 	body{
 		min-height: 100%;
 		background-position: center;
-		background-image: url('header.jpg');
+		background-image: url('<%= @url%>header.jpg');
 	}
 
 </style>
@@ -14,7 +14,7 @@
                             <h3 class="panel-title">Escolha sua cidade</h3>
                         </div>
                         <br>
-                        <%= form_tag(controller: "home", action: "index", method: "get") do %>
+                        <%= form_tag(controller: "home", action: "index") do %>
 						  <label>Cidade</label>
 						  <%= select_tag(:id_cidade,options_from_collection_for_select(City.all, :id, :name),class: "form-control") %>
 						  <br>
