@@ -1,9 +1,10 @@
 class HomeController < ApplicationController
-	before_action :set_city, only: [:index, :busca]
-	before_action :set_category, only: [:index, :busca]
+	before_action :set_city, only: [:index, :busca, :show_professional,  :show_service]
+	before_action :set_category, only: [:index, :busca, :show_professional,  :show_service]
+	before_action :set_busca, only: [:index, :busca, :show_professional,  :show_service]
 	def index
 		#Usuarios de uma determinada cidade
-		@q = User.ransack(params[:q])
+		
 		@users = @q.result().where(kind:1, city_id: @city)
 		@users = @users.joins("INNER JOIN categories c ON users.category_id = c.id").distinct
 
@@ -14,16 +15,28 @@ class HomeController < ApplicationController
 	def busca
 
 		if !params[:id].present?
-			@q = User.ransack(params[:q])
+			
 	  		@users = @q.result().where(kind: 1, city_id: @city)
   		else
-  			@q = User.ransack(params[:q])
+  			
   			@users = User.where(category_id: params[:id])
   		end
 	end
 
+	def show_professional
+		@user = User.find_by_id(params[:id])
+		@services = Service.where(user_professional_id: @user.id)
+	end
+	def show_service
+		@service = Service.find_by_id(params[:id])
+		@comments = Comment.where(service_id: @service.id)
+	end
 	private
     
+    def set_busca
+    	@q = User.ransack(params[:q])
+    end
+
     def set_category
     	@categories = Category.joins("INNER JOIN users u ON u.category_id = categories.id AND u.city_id = #{@city.id}")
     end
