@@ -21,7 +21,6 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    @user.status="inativo"
   end
 
   # GET /users/1/edit
@@ -31,9 +30,13 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+
     @user = User.new(user_params)
 
     respond_to do |format|
+
+      @user[:status] = 1
+
       if @user.save
         format.html { redirect_to root_path, notice: 'Usuario criado, espere a ativação do seu cadastro.' }
         format.json { render :show, status: :created, location: root_path }
@@ -76,6 +79,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :city_id, :category_id, :kind, :status, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :city_id, :category_id, :kind, :email, :password, :password_confirmation)
     end
 end

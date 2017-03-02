@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.references :city, foreign_key: true
       t.references :category, foreign_key: true
       t.integer :kind
-      t.integer :status
+      t.integer :status, :default => 1
 
       t.timestamps
     end

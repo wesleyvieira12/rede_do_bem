@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20170302142605) do
     t.integer  "city_id"
     t.integer  "category_id"
     t.integer  "kind"
-    t.integer  "status"
+    t.integer  "status",                 default: 1
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "email",                  default: "", null: false
