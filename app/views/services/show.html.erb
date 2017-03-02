@@ -12,7 +12,18 @@
   <dd><%= @service.user_professional_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
   <dd><%= @service.status %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:photos) %>:</strong></dt>
+  <dd><%= @photos.count %></dd>
+
 </dl>
+
+<% @photos.each do |photo| %>
+
+  <td><%= image_tag(photo.avatar.pic.url) if photo.avatar? %></td>
+
+<% end %>
+
+<br><br><br><br>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               services_path, :class => 'btn btn-default'  %>

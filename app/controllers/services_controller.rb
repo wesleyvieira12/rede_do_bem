@@ -11,6 +11,17 @@ class ServicesController < ApplicationController
   # GET /services/1
   # GET /services/1.json
   def show
+    
+    @photos = Array.new
+
+    @todas = ImageService.all
+
+    @todas.each do |cada|
+      if cada.service_id==params[:id].to_i 
+        @photos.push(cada)
+      end
+    end
+
   end
 
   # GET /services/new
