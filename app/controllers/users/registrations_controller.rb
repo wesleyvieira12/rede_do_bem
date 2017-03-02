@@ -1,5 +1,5 @@
-class UsersController < ApplicationController
-  before_action :authenticate_user!
+class Users::RegistrationsController < Devise::RegistrationsController
+before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def update?

@@ -56,8 +56,8 @@
   		
         <% @comments.each do |c|%>
       		<blockquote>
-      		    <p>Profissional: <%= c.service.user_professional.name%></p>
-                <p>Comentário: <%= c.description%></p>
+      		    <p><strong>Profissional: <%= c.service.user_professional.name%></strong></p>
+                <p><strong>Comentário:</strong> <%= c.description%></p>
                 <footer style="color: #000">Enviado por <strong>Cliente</strong></footer>
             </blockquote>
         <% end %>

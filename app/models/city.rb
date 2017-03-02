@@ -3,4 +3,8 @@ class City < ApplicationRecord
   enum status: [:ativo, :inativo]
   belongs_to :state
   has_many :users
+
+  def city_state
+  	 "#{name} - #{state.name}"
+  end
 end
