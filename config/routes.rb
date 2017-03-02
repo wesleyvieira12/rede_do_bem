@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post 'home', to: 'home#index'
   get 'home', to: 'home#index'
   post 'busca', to: 'home#busca'
+  get 'busca/:id', to: 'home#busca', as: "busca_category_id"
 
   #PAINEL DO USUARIO
   get 'painel', to: 'painel#index'

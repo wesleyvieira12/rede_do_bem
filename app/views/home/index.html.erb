@@ -32,7 +32,9 @@
             <h1 style="margin-left:1em; " >CATEGORIAS</h1>
              <% @users.each do |u|%>
 	            <div class="col-sm-3 text-center">
+              <%= link_to busca_category_id_path(u.category_id) do %>
 	                <img class="img-rounded img-responsive img-center" src="https://www.galata.com.br/assets/images/icone-frontend-200x200-29.jpg"  alt="">
+                  <% end %>
 	                <h4> <%= u.category.name%> </h4>
 	           
 	            </div>
