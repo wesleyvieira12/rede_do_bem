@@ -2,6 +2,7 @@ class HomeController < ApplicationController
 	before_action :set_city, only: [:index, :busca, :show_professional,  :show_service]
 	before_action :set_category, only: [:index, :busca, :show_professional,  :show_service]
 	before_action :set_busca, only: [:index, :busca, :show_professional,  :show_service]
+
 	def index
 		#Usuarios de uma determinada cidade
 		

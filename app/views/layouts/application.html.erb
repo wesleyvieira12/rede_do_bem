@@ -80,19 +80,24 @@
                             <%= link_to current_user.name, painel_path%>
                         </li>
                     <% else %>
+                        
                         <li>
                             <a href="#"> <!-- Recurso Tecnológico Improvisado -->
                                 Acesso Restrito
                             </a>
                         </li>
+
+                        <li><%= link_to destroy_user_session_path, method: :delete do%><i class="fa fa-sign-out fa-fw"></i> Sair <% end %>
+                        <li>
+
                     <% end %>
 
                     <% else %>
                     <li>
-                        <%= link_to "Entrar",new_user_session_path%>
+                        <%= link_to "Entrar",new_user_session_path %>
                     </li>
                     <li>
-                        <%= link_to "Cadastrar-se",new_user_registration_path%>
+                        <%= link_to "Cadastrar-se",new_user_registration_path %>
                     </li>
                     <% end %>
                     

@@ -1,4 +1,5 @@
 class TelaInicialController < ApplicationController
+
 	def index
 		if session[:city_id].present?
 			if !params[:alterar].present?
