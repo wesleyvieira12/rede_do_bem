@@ -1,0 +1,23 @@
+<%= form_for(image_service) do |f| %>
+  <% if image_service.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(image_service.errors.count, "error") %> prohibited this image_service from being saved:</h2>
+
+      <ul>
+      <% image_service.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="four wide field">
+    <%= f.label :avatar %><br>
+    <%= image_tag(@image_service.avatar_url(:thumb)) if @image_service.avatar? %>
+    <%= f.file_field :avatar %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

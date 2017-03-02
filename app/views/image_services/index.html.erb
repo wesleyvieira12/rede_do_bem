@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Image Services</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% @image_services.each do |image_service| %>
+
+      <tr>
+
+      <td><strong> Photo </strong>
+      <%= image_tag(image_service.avatar.pic.url) if image_service.avatar? %></td>
+
+        <td><%= link_to 'Show', image_service %></td>
+        <td><%= link_to 'Edit', edit_image_service_path(image_service) %></td>
+        <td><%= link_to 'Destroy', image_service, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Image Service', new_image_service_path %>

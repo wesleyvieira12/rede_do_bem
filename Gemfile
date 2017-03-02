@@ -10,8 +10,12 @@ gem 'autoprefixer-rails','~> 6.4'
 # Gem for Permission's User
 gem "pundit"
 
+gem "rmagick"
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
+
+gem 'carrierwave', '~> 1.0'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'

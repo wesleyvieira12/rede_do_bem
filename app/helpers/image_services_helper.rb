@@ -1,0 +1,2 @@
+module ImageServicesHelper
+end
