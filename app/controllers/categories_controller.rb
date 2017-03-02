@@ -46,15 +46,28 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
-    respond_to do |format|
-      if @category.update(category_params)
-        format.html { redirect_to @category, notice: 'Category was successfully updated.' }
-        format.json { render :show, status: :ok, location: @category }
+
+      @users = User.find_by_category_id(@category.id)
+
+      respond_to do |format|
+
+      if category_params[:status]=="inativo" and @category.status=="ativo" and @users!=nil
+          format.html { redirect_to @category, notice: 'Categoria tem profissionais. Desative os profissionais.' }
+          format.json { render :show, status: :ok, location: @category }
       else
-        format.html { render :edit }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
+
+        if @category.update(category_params)
+          format.html { redirect_to @category, notice: 'Category was successfully updated.' }
+          format.json { render :show, status: :ok, location: @category }
+        else
+          format.html { render :edit }
+          format.json { render json: @category.errors, status: :unprocessable_entity }
+        end
+
       end
+
     end
+
   end
 
   # DELETE /categories/1

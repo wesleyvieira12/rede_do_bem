@@ -41,25 +41,46 @@ class StatesController < ApplicationController
   # PATCH/PUT /states/1
   # PATCH/PUT /states/1.json
   def update
-    respond_to do |format|
-      if @state.update(state_params)
-        format.html { redirect_to @state, notice: 'State was successfully updated.' }
-        format.json { render :show, status: :ok, location: @state }
+
+    @cities = City.find_by_state_id(@state.id)
+
+      respond_to do |format|
+
+      if state_params[:status]=="inativo" and @state.status=="ativo" and @cities!=nil
+          format.html { redirect_to @state, notice: 'Estado tem cidades. Desative as cidades.' }
+          format.json { render :show, status: :ok, location: @state }
       else
-        format.html { render :edit }
-        format.json { render json: @state.errors, status: :unprocessable_entity }
+
+        if @state.update(state_params)
+          format.html { redirect_to @state, notice: 'State was successfully updated.' }
+          format.json { render :show, status: :ok, location: @state }
+        else
+          format.html { render :edit }
+          format.json { render json: @state.errors, status: :unprocessable_entity }
+        end
+
       end
+
     end
   end
 
   # DELETE /states/1
   # DELETE /states/1.json
   def destroy
-    @state.destroy
+
+    @cities = City.find_by_state_id(@state.id)
+
     respond_to do |format|
-      format.html { redirect_to states_url, notice: 'State was successfully destroyed.' }
-      format.json { head :no_content }
+      if(@cities!=nil)
+        format.html { redirect_to states_url, notice: 'Estado tem cidades. Destrua primeiro as cidades.' }
+        format.json { head :no_content }
+      else
+        @state.destroy
+        format.html { redirect_to states_url, notice: 'State was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
+
   end
 
   private
