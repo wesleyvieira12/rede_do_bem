@@ -16,7 +16,7 @@
                         <br>
                         <%= form_tag(controller: "home", action: "index") do %>
 						  <label>Cidade</label>
-						  <%= select_tag(:id_cidade,options_from_collection_for_select(City.all, :id, :name),class: "form-control") %>
+						  <%= select_tag(:id_cidade,options_from_collection_for_select(City.where(status: "ativo"), :id, :name),class: "form-control") %>
 						  <br>
 						  <%= submit_tag("Entrar", class: "btn btn-info form-control") %>	  
 						  

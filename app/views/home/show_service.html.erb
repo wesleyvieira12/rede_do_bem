@@ -37,14 +37,14 @@
   </div>
   <h3><span class="glyphicon glyphicon-comment"></span> Comentários</h3>
             <% @comments.each do |c|%>  
-              <div class="row">
-                        <div class="col-sm-8">
-                            <span class="glyphicon glyphicon-star"></span>
-                            
-                            <%=@service.user_client.name%>
-                            <span class="pull-right"><%= c.created_at.strftime("%d/%m/%Y, %H:%M")%></span>
-                            <p><%= c.description%></p>
-                        </div>
-            </div>
+            <table class="table">
+              <tbody>
+                <tr class="info">
+                  <th><%=@service.user_client.name%></th>
+                  <th><%= c.description%></th>
+                  <th><%= c.created_at.strftime("%d/%m/%Y, %H:%M")%></th>
+                </tr>
+              </tbody>
+            </table>
             <% end %>
 </div>
