@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require cocoon
 //= require jquery_ujs
 //= require bootstrap_sb_admin_base_v2
 

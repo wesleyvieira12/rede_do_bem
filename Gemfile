@@ -10,6 +10,8 @@ gem 'autoprefixer-rails','~> 6.4'
 # Gem for Permission's User
 gem "pundit"
 
+gem "cocoon"
+
 gem "rmagick"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

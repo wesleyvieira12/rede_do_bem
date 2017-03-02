@@ -15,6 +15,26 @@
     </div>
   <% end %>
 
+  <p>
+
+    <%= link_to_add_association('Adicionar imagem', f, :image_services, 'data-association-insertion-node' => "#list-image ol", 'data-association-insertion-method' => "append", :class => 'button-xs') %>
+
+  </p>
+
+  <fieldset id="list-image">
+
+    <ol>
+
+      <%= f.fields_for :image_services do |image| %>
+
+        <%= render partial: "image_service_fields", locals: {f: image} %>
+
+        <% end %>
+
+    </ol>
+
+  </fieldset>
+
   <div class="form-group">
     <%= f.label :description, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
