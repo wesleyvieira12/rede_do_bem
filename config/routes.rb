@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :users
   resources :categories
 
+  get 'comments/novo/:id', to:'comments#new', as: 'novo_comentario'
+
   #TELA INICIAL - Escolha das cidades
   root to: 'tela_inicial#index'  
   get '/tela_inicial/:alterar', to:'tela_inicial#index', as: 'alterar_cidade'
