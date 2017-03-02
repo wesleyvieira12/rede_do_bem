@@ -11,6 +11,14 @@
     </div>
   <% end %>
 
+  <div class="form-group">
+    <%= f.label :service_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :service_id, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:service_id) %>
+  </div>
+
   <div class="four wide field">
     <%= f.label :avatar %><br>
     <%= image_tag(@image_service.avatar_url(:thumb)) if @image_service.avatar? %>
