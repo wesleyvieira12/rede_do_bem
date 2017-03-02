@@ -20,7 +20,7 @@ class HomeController < ApplicationController
 	  		@users = @q.result().where(kind: 1, city_id: @city, status: "ativo")
   		else
   			
-  			@users = User.where(category_id: params[:id])
+  			@users = User.where(category_id: params[:id], city_id: @city, status: "ativo")
   		end
 	end
 

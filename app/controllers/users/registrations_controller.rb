@@ -35,8 +35,8 @@ before_action :authenticate_user!
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to root_path, notice: 'Usuario criado, espere a ativação do seu cadastro.' }
-        format.json { render :show, status: :created, location: root_path }
+        format.html { redirect_to new_user_registration_path, notice: 'Usuario criado, espere a ativação do seu cadastro.' }
+        format.json { render :show, status: :created, location: new_user_registration_path }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -71,7 +71,7 @@ before_action :authenticate_user!
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find(current_user.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

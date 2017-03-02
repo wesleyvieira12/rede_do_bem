@@ -4,6 +4,8 @@ class TelaInicialController < ApplicationController
 		if session[:city_id].present?
 			if !params[:alterar].present?
 				redirect_to home_path
+
+
 			else
 				
 				@url = "../"

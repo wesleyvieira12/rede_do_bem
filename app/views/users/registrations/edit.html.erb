@@ -1,43 +1,105 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h1>Meus dados</h1>
+<br>
+            <div class="row">
+                <div class="col-md-10">
+                   
+                        
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <div class="authform">
+  <%= bootstrap_flash%>
+  <%= form_for @user, :html => { :class => "user" } do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@user.errors.count, "erro", "erros") %>:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
   <% end %>
+      
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, autocomplete: "off", class: "form-control" %>      
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :city_id%>
+        <%= f.collection_select(:city_id, City.where(status: "ativo"), :id, :city_state, {}, {class: 'form-control'})%>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+      <div class="form-group">
+        <%= f.label :email %>
+         <%= f.email_field :email, autocomplete: "off", autofocus: true, class:"form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :kind %>
+        <%= f.select :kind, options_for_select([["Cliente", "cliente"], ["Profissional", "professional"]]),{}, :class => 'form-control' %>     
+      </div>
+      <div class="form-group" id="category_id_form">
+        <%= f.label :category_id%>
+      
+        <%= f.collection_select(:category_id, Category.all, :id, :name, {include_blank: true}, {class: 'form-control'})%>
+      
+      </div>
+      
+      <div class="form-group">
+        <label>Senha</label>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> caracteres no mínimo)</em>
+        <% end %>
+    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+      </div>
+
+      
+      <div class="form-group">
+      <label>Confirmar senha</label>
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+      </div>
+      
+      <%= f.submit "Cadastrar", class: "btn btn-lg btn-success btn-block" %>
+      
+   <% end %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
 
-<h3>Cancel my account</h3>
+                </div>
+            </div>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
+
+<script type="text/javascript">
+<% if @user.kind == "professional"%>
+document.getElementById("user_kind").value= "professional" ;
+$('#user_kind').val() = "professional";
+<%elsif @user.kind == "cliente"%>
+document.getElementById("user_kind").value= "cliente" ;
+$('#user_kind').val() = "cliente";
+<%else @user.kind == "administrator"%>
+document.getElementById("user_kind").value= "administrator" ;
+$('#user_kind').val() = "administrator";
+
+<%end%>
+$(document).ready(function() {
+  
+  $('#category_id_form').hide();
+  $('#user_kind').change(function() {
+    if ($('#user_kind').val() == 'professional') {
+      $('#category_id_form').show();
+    } else {
+      $('#category_id_form').hide();
+    }
+  });
+});
+</script>
+
+<h3>Deseja cancelar sua conta?</h3>
+
+<p> <%= button_to "Cancelar", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>

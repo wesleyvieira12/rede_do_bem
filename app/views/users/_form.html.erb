@@ -53,7 +53,7 @@
   <div class="form-group">
     <%= f.label :kind, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.select :kind, options_for_select([["Cliente", "0"], ["Profissional", "1"], ["Administrador", "2"]]),{}, :class => 'form-control' %>
+      <%= f.select :kind, options_for_select([["Cliente", "cliente"], ["Profissional", "professional"]]),{}, :class => 'form-control' %>
     </div>
     <%=f.error_span(:kind) %>
   </div>
@@ -86,7 +86,7 @@
 $(document).ready(function() {
   $('#category_id_form').hide();
   $('#user_kind').change(function() {
-    if ($('#user_kind').val() == '1') {
+    if ($('#user_kind').val() == 'professional') {
       $('#category_id_form').show();
     } else {
       $('#category_id_form').hide();
