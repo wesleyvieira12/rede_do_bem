@@ -9,4 +9,18 @@ class User < ApplicationRecord
   belongs_to :city
   belongs_to :category
   has_many :services
+
+  def active_for_authentication? 
+    super && status=='ativo'
+    :approved
+  end 
+
+  def inactive_message 
+    if status='inativo'
+      :not_approved 
+    else 
+      super
+    end 
+  end
+
 end

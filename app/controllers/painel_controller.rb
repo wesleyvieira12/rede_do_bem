@@ -1,7 +1,8 @@
 class PainelController < ApplicationController
   
   before_action :authenticate_user!
-  before_action :active_user!
+
+  before_action :check
 
   def index
   	@count_user = User.count
@@ -9,7 +10,11 @@ class PainelController < ApplicationController
   	@count_comment = Comment.count
   end
 
-  def active_user!
-  	current_user.status=="ativo"
+  def check
+  	if current_user.status=="inativo"
+  		 sign_out(current_user)
+  		 redirect_to home_path
+  	end
   end
+
 end
