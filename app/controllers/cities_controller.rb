@@ -41,24 +41,43 @@ class CitiesController < ApplicationController
   # PATCH/PUT /cities/1
   # PATCH/PUT /cities/1.json
   def update
+
+    @users = User.find_by_city_id(@city.id)
+
     respond_to do |format|
-      if @city.update(city_params)
-        format.html { redirect_to @city, notice: 'City was successfully updated.' }
-        format.json { render :show, status: :ok, location: @city }
+      if city_params[:status]=="inativo" and @city.status=="ativo" and @users!=nil
+        format.html { redirect_to @city, notice: 'Cidade tem profissionais. Desative os profissionais.' }
+          format.json { render :show, status: :ok, location: @city }
       else
-        format.html { render :edit }
-        format.json { render json: @city.errors, status: :unprocessable_entity }
+
+        if @city.update(city_params)
+          format.html { redirect_to @city, notice: 'City was successfully updated.' }
+          format.json { render :show, status: :ok, location: @city }
+        else
+          format.html { render :edit }
+          format.json { render json: @city.errors, status: :unprocessable_entity }
+        end
+
       end
     end
+
   end
 
   # DELETE /cities/1
   # DELETE /cities/1.json
   def destroy
-    @city.destroy
+
+    @users = User.find_by_city_id(@city.id)
+
     respond_to do |format|
-      format.html { redirect_to cities_url, notice: 'City was successfully destroyed.' }
-      format.json { head :no_content }
+      if(@users!=nil)
+        format.html { redirect_to cities_url, notice: 'Cidade tem profissionais. Destrua primeiro os profissionais.' }
+        format.json { head :no_content }
+      else
+        @city.destroy
+        format.html { redirect_to cities_url, notice: 'City was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
