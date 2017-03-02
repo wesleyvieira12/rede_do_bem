@@ -9,15 +9,15 @@ class UserPolicy
   end
 
   def updateCategory?
-    @user.kind=="administrator"
+    @user.kind=="administrator" and @user.status="ativo"
   end
 
   def destroyCategory?
-    @user.kind=="administrator"
+    @user.kind=="administrator" and @user.status="ativo"
   end
 
   def createCategory?
-    @user.kind=="administrator"
+    @user.kind=="administrator" and @user.status="ativo"
   end
 
   def createUser?
@@ -33,79 +33,79 @@ class UserPolicy
   end
 
   def createCity?
-    @user.kind=="administrator"
+    @user.kind=="administrator" and @user.status="ativo"
   end
 
   def updateCity?
-    @user.kind=="administrator"
+    @user.kind=="administrator" and @user.status="ativo"
   end
 
   def destroyCity?
-    @user.kind=="administrator"
+    @user.kind=="administrator" and @user.status="ativo"
   end
 
   def createState?
-    @user.kind=="administrator"
+    @user.kind=="administrator" and @user.status="ativo"
   end
 
   def updateState?
-    @user.kind=="administrator"
+    @user.kind=="administrator" and @user.status="ativo"
   end
 
   def destroyState?
-    @user.kind=="administrator"
+    @user.kind=="administrator" and @user.status="ativo"
   end
 
   def createService?
-    @user.kind=="professional"
+    @user.kind=="professional" and @user.status="ativo"
   end
 
   def updateService?
-    @user.kind=="professional"
+    @user.kind=="professional" and @user.status="ativo"
   end
 
   def destroyService?
-    @user.kind=="professional"
+    @user.kind=="professional" and @user.status="ativo"
   end
 
   def createComment?
-    @user.kind=="cliente"
+    @user.kind=="cliente" and @user.status="ativo"
   end
 
   def updateComment?
-    @user.kind=="cliente"
+    @user.kind=="cliente" and @user.status="ativo"
   end
 
   def destroyComment?
-    @user.kind=="cliente"
+    @user.kind=="cliente" and @user.status="ativo"
   end
   
   def linkHome?
-    @user.kind=="administrator"
+    @user.kind=="administrator" and @user.status="ativo"
   end
 
   def linkUsers?
-    @user.kind=="administrator"
+    @user.kind=="administrator" and @user.status="ativo"
   end
 
   def linkStates?
-    @user.kind=="administrator"
+    @user.kind=="administrator" and @user.status="ativo"
   end
 
   def linkCities?
-    @user.kind=="administrator"
+    @user.kind=="administrator" and @user.status="ativo"
   end
 
   def linkCategories?
-    @user.kind=="administrator"
+    @user.kind=="administrator" and @user.status="ativo"
   end
 
   def linkServices?
-    @user.kind=="administrator" or @user.kind=="professional" or @user.kind=="cliente" 
+    @user.kind=="administrator" or @user.kind=="professional" or @user.kind=="cliente" and @user.status="ativo"
   end
 
   def linkComments?
-    @user.kind=="cliente"
+    @user.kind=="cliente" and @user.status="ativo"
   end
 
 end
