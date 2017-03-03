@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   get 'comments/novo/:id', to:'comments#new', as: 'novo_comentario'
 
+  get 'home/index', to:'users#index', as:'mostrar_servico'
+
   get 'users/novo/:id', to:'users#change', as: 'mostrar_usuario'
 
   get 'comments/report/:id', to:'users#report', as: 'report_comentario'

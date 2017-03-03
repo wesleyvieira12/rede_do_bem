@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    
+
     @users_professional2 = User.where(professional_id: current_user.id)
 
     @users_professional = Array.new
@@ -66,8 +66,8 @@ class UsersController < ApplicationController
         end
       end
     end
-
-    @users_professional = @users_professional.uniq
+    
+    
     @users_professional = @users_professional.paginate(:page => params[:page], :per_page => 8)
 
     @users_admin = User.all
