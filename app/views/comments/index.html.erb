@@ -18,7 +18,7 @@
       <tr>
         <td><%= link_to comment.id, comment_path(comment) %></td>
         <td><%= comment.description %></td>
-        <td><%= comment.service_id %></td>
+        <td><%= comment.service.description %></td>
         <td><%= comment.status %></td>
         <td><%=l comment.created_at %></td>
         <td>
