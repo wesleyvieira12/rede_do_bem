@@ -75,33 +75,17 @@
         <!-- Projects Row -->
         <div class="row" style="margin: 1em; ">
 
-            <% @images1.each do |image| %>
+            <% @images.each do |image| %>
 
               <div class="col-sm-3 portfolio-item">
                 
-                <%= image_tag(image.avatar.pic.url) if image.avatar? %>
+                <%= image_tag(image.avatar.great.url) if image.avatar? %>
 
               </div>
 
             <% end %>
             
         </div>
-
-        <br>
-
-        <div class="row" style="margin: 1em; ">
-
-            <% @images2.each do |image| %>
-
-              <div class="col-sm-3 portfolio-item">
-                
-                <%= image_tag(image.avatar.pic.url) if image.avatar? %>
-
-              </div>
-
-            <% end %>
-            
-        </div>        
 
         <!-- /.row -->
   		</div>
