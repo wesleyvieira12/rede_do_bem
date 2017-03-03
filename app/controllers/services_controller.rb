@@ -1,4 +1,7 @@
 class ServicesController < ApplicationController
+  
+  require 'will_paginate/array'
+
   before_action :authenticate_user!
   before_action :set_service, only: [:show, :edit, :update, :destroy]
 
