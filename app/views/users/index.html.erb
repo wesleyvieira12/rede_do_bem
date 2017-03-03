@@ -7,6 +7,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:perfil) %></th>
       <th><%= model_class.human_attribute_name(:city_id) %></th>
       <th><%= model_class.human_attribute_name(:category_id) %></th>
       <th><%= model_class.human_attribute_name(:kind) %></th>
@@ -20,11 +21,14 @@
       <tr>
         <td><%= link_to user.id, user_path(user) %></td>
         <td><%= user.name %></td>
+        <td><%= image_tag(user.perfil.thumb.url) if user.perfil? %></td>
         <td><%= user.city_id %></td>
         <td><%= user.category_id %></td>
         <td><%= user.kind %></td>
+        
         <td><%= user.status %></td>
         <td><%=l user.created_at %></td>
+        
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show")),
                       user_path(user), :class => 'btn btn-default btn-xs' %>
@@ -43,7 +47,18 @@
 
           <% end %>
 
+          <% if policy(:user).approve? and user.status=="inativo" %>
+            <%= link_to "Ativar",
+                          mostrar_usuario_path(user.id),
+                          :class => 'btn btn-primary btn-xs' %>
+          <% elsif policy(:user).approve? and user.status=="ativo" %>
+            <%= link_to "Desativar",
+                          mostrar_usuario_path(user.id),
+                          :class => 'btn btn-primary btn-xs' %>
+          <% end %>
+
         </td>
+
       </tr>
     <% end %>
   </tbody>

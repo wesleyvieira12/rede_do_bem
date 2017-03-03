@@ -27,6 +27,34 @@ class UsersController < ApplicationController
   def show
   end
 
+  def change
+
+    @user_all = User.all
+
+    @user_all.each do |user|
+
+      if user.id==params[:id].to_i
+        @user_here = user
+      end
+    end
+
+    respond_to do |format|
+
+      if @user_here.status=="ativo"
+        @user_here.status="inativo"
+        @user_here.save
+        format.html { redirect_to user_path, notice: 'Status Alterado.' }
+        format.json { render :show, status: :created, location: user_path }
+      else
+        @user_here.status="ativo"
+        @user_here.save
+        format.html { redirect_to user_path, notice: 'Status Alterado.' }
+        format.json { render :show, status: :created, location: user_path }
+      end
+
+    end
+  end
+
   # GET /users/new
   def new
     @user = User.new
@@ -88,6 +116,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :city_id, :category_id, :kind, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :city_id, :category_id, :kind, :email, :password, :password_confirmation, :perfil)
     end
 end

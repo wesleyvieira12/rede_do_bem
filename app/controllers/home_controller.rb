@@ -5,6 +5,22 @@ class HomeController < ApplicationController
 
 	def index
 		#Usuarios de uma determinada cidade
+
+		@images = ImageService.last(8)
+
+		@images1 = Array.new
+		@images2 = Array.new
+
+		count = 0
+
+		@images.each do |image|
+			count = count+1
+			if count<5
+				@images1.push(image)
+			else
+				@images2.push(image)
+			end
+		end
 		
 		@users = @q.result().where(kind:1, status: "ativo", city_id: @city)
 		@users = @users.joins("INNER JOIN categories c ON users.category_id = c.id").distinct
