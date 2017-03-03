@@ -47,3 +47,6 @@
             new_city_path,
             :class => 'btn btn-primary' %>
 <% end %>
+
+<br>
+<%= will_paginate @cities, renderer: BootstrapPagination::Rails %>

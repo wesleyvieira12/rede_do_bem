@@ -6,8 +6,11 @@ class ServicesController < ApplicationController
   # GET /services.json
   def index
     @services_professional = Service.where(user_professional_id: current_user.id)
+    @services_professional = @services_professional.paginate(:page => params[:page], :per_page => 8)
     @services_cliente = Service.where(user_client_id: current_user.id)
+    @services_cliente = @services_cliente.paginate(:page => params[:page], :per_page => 8)
     @services_admin = Service.all
+    @services_admin = @services_admin.paginate(:page => params[:page], :per_page => 8)
   end
 
   # GET /services/1

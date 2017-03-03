@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
 
     @comments = Comment.where(report: true)
 
-    @comments = @comments.paginate(:page => params[:page], :per_page => 4)
+    @comments = @comments.paginate(:page => params[:page], :per_page => 8)
     
   end
 
