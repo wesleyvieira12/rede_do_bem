@@ -9,6 +9,10 @@ class UsersController < ApplicationController
     true
   end
 
+  def admin?
+    current_user.kind == "administrator"
+  end
+
   def check
     if current_user.status=="inativo"
       sign_out(current_user)
