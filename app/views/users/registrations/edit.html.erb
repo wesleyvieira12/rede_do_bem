@@ -19,6 +19,11 @@
         <%= f.text_field :name, autocomplete: "off", class: "form-control" %>      
       </div>
       
+      <div class="form-group">
+        <%= f.label :perfil %><br>
+        <%= image_tag(@user.perfil_url(:thumb)) if @user.perfil? %>
+        <%= f.file_field :perfil %>
+      </div>
       
       <div class="form-group">
         <%= f.label :city_id%>
@@ -44,9 +49,6 @@
         <% end %>
     <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
       </div>
-
-      
-      
 
       <div class="form-group">
         <label>Senha atual</label> <i>(Nós precisamos que você coloque sua senha atual para confirmar as mudanças)</i>

@@ -7,20 +7,6 @@ class HomeController < ApplicationController
 		#Usuarios de uma determinada cidade
 
 		@images = ImageService.last(8)
-
-		@images1 = Array.new
-		@images2 = Array.new
-
-		count = 0
-
-		@images.each do |image|
-			count = count+1
-			if count<5
-				@images1.push(image)
-			else
-				@images2.push(image)
-			end
-		end
 		
 		@users = @q.result().where(kind:1, status: "ativo", city_id: @city)
 		@users = @users.joins("INNER JOIN categories c ON users.category_id = c.id").distinct
@@ -45,7 +31,8 @@ class HomeController < ApplicationController
 		@services = Service.where(user_professional_id: @user.id, status: "ativo")
 	end
 	def show_service
-		@service = Service.find_by_id(params[:id])
+		@service = Service.find_by_id(params[:id].to_i)
+		@images = ImageService.where(service_id: @service.id)
 		@comments = Comment.where(service_id: @service.id, status: "ativo")
 	end
 	private
