@@ -57,7 +57,7 @@
       		<blockquote>
       		    <p><strong>Profissional: <%= c.service.user_professional.name%></strong></p>
                 <p><strong>Comentário:</strong> <%= c.description%></p>
-                <footer style="color: #000">Enviado por <strong>Cliente</strong></footer>
+                <footer style="color: #000">Enviado por <strong><%= c.service.user_client.name%></strong></footer>
             </blockquote>
         <% end %>
 

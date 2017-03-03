@@ -22,6 +22,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new
     @user = User.new
     @user.status="inativo"
+    
   end
 
   # GET /users/1/edit

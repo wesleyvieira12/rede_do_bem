@@ -14,6 +14,8 @@ class User < ApplicationRecord
   belongs_to :category
   has_many :services
 
+
+
   def active_for_authentication? 
     super && status=='ativo'
     :approved
