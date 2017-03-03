@@ -16,6 +16,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def report
+
+    @comment = Comment.find_by_id(params[:id])
+    @comment.report = true
+
+    respond_to do |format|
+
+      if @comment.save
+        format.html { redirect_to service_path(@comment.service_id), notice: 'Comentário denunciado.' }
+        format.json { render :show, status: :created, location: service_path(@comment.service_id) }
+      else
+        format.html { redirect_to service_path(@comment.service_id), notice: 'Comentário não denunciado.' }
+        format.json { render :show, status: :created, location: service_path(@comment.service_id) }
+      end
+
+    end
+
+  end
+
   # GET /users
   # GET /users.json
   def index

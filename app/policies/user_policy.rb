@@ -105,8 +105,12 @@ class UserPolicy
   end
 
   def linkComments?
-    false
+    @user.kind=="administrator" and @user.status="ativo"
     #@user.kind=="cliente" and @user.status="ativo"
+  end
+
+  def linkReport?
+    @user.kind=="professional" or @user.kind=="cliente" and @user.status="ativo"
   end
 
   def approve?

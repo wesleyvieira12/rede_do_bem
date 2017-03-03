@@ -6,24 +6,32 @@ class CommentsController < ApplicationController
   # GET /comments.json
   def index
 
-    @services = Service.where(user_client_id: current_user.id)
-
-    @comments_aux = Comment.all
-    @comments = Array.new
-
-    @services.each do |service|
-      @comments_aux.each do |comment|
-        if comment.service_id==service.id
-          @comments.push(comment)
-        end
-      end
-    end
+    @comments = Comment.where(report: true)
     
   end
 
   # GET /comments/1
   # GET /comments/1.json
   def show
+  end
+
+  def report
+
+    @comment = Comment.find_by_id(params[:id])
+    @comment.report = true
+
+    respond_to do |format|
+
+      if @comment.save
+        format.html { redirect_to service_path(@comment.service_id), notice: 'Comentário denunciado.' }
+        format.json { render :show, status: :created, location: service_path(@comment.service_id) }
+      else
+        format.html { redirect_to service_path(@comment.service_id), notice: 'Comentário não denunciado.' }
+        format.json { render :show, status: :created, location: service_path(@comment.service_id) }
+      end
+
+    end
+
   end
 
   # GET /comments/new
