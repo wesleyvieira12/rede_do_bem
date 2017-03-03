@@ -5,7 +5,8 @@ class CitiesController < ApplicationController
   # GET /cities
   # GET /cities.json
   def index
-    @cities = City.all
+    @q = City.ransack(params[:q])
+    @cities = @q.result(distinct: true)
     @cities = @cities.paginate(:page => params[:page], :per_page => 8)
   end
 

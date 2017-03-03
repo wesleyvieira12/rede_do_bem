@@ -10,6 +10,8 @@ gem 'autoprefixer-rails','~> 6.4'
 # Gem for Permission's User
 gem "pundit"
 
+gem 'ransack'
+
 gem "cocoon"
 
 gem 'will_paginate-bootstrap'
