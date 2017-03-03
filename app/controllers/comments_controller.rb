@@ -58,8 +58,8 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @comment }
+        format.html { redirect_to service_path(@comment.service_id), notice: 'Comment was successfully updated.' }
+        format.json { render :show, status: :ok, location: service_path(@comment.service_id) }
       else
         format.html { render :edit }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -70,9 +70,10 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
+    @service_id = @comment.service_id
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to service_path(@service_id), notice: 'Comment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
