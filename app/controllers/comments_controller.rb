@@ -8,7 +8,8 @@ class CommentsController < ApplicationController
 
   def index
 
-    @comments = Comment.where(report: true)
+    @q = Comment.ransack(params[:q])
+    @comments = @q.result(distinct: true).where(report: true)
 
     @comments = @comments.paginate(:page => params[:page], :per_page => 8)
     
