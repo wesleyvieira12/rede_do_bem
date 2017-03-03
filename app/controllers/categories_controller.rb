@@ -10,7 +10,8 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    @q = Category.ransack(params[:q])
+    @categories = @q.result(distinct: true)
     @categories = @categories.paginate(:page => params[:page], :per_page => 8)
   end
 
