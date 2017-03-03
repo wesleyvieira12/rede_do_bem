@@ -339,7 +339,7 @@
                     <!--USUARIO-->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                            <i class="fa fa-user fa-fw"></i><%= current_user.name%> <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
                             <li><%= link_to edit_user_registration_path do%><i class="fa fa-user fa-fw"></i> Meus dados <% end %>
@@ -412,9 +412,15 @@
                             </li>
                             <li>
                                 <% if policy(:user).linkComments? %>
-                                    <%= link_to comments_path do%>
-                                    <i class="fa fa-comment fa-fw"></i> Comentarios
-                                    <% end %>
+                                    <%if current_user.kind == "administrator"%>
+                                        <%= link_to comments_path do%>
+                                        <i class="fa fa-comment fa-fw"></i> Comentarios denunciados
+                                        <% end %>
+                                    <%else%>
+                                        <%= link_to comments_path do%>
+                                        <i class="fa fa-comment fa-fw"></i> Comentarios
+                                        <% end %>
+                                    <%end%>
                                 <% end %>
                             </li>
                             <!--<li>

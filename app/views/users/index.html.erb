@@ -8,7 +8,7 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:perfil) %></th>
-      <th><%= model_class.human_attribute_name(:profissional_id) %></th>
+      <th>Autorizado por</th>
       <th><%= model_class.human_attribute_name(:city_id) %></th>
       <th><%= model_class.human_attribute_name(:category_id) %></th>
       <th><%= model_class.human_attribute_name(:kind) %></th>
@@ -26,9 +26,13 @@
           <td><%= link_to user.id, user_path(user) %></td>
           <td><%= user.name %></td>
           <td><%= image_tag(user.perfil.thumb.url) if user.perfil? %></td>
-          <td><%= user.professional_id %></td>
-          <td><%= user.city_id %></td>
-          <td><%= user.category_id %></td>
+          <td><%= User.find(user.professional_id).name  %></td>
+          <td><%= user.city.name %></td>
+          <% if !user.category_id.nil?%>
+          <td><%= user.category.name%></td>
+          <% else %>
+          <td></td>
+          <% end %>
           <td><%= user.kind %></td>
           
           <td><%= user.status %></td>
@@ -74,9 +78,18 @@
           <td><%= link_to user.id, user_path(user) %></td>
           <td><%= user.name %></td>
           <td><%= image_tag(user.perfil.thumb.url) if user.perfil? %></td>
-          <td><%= user.professional_id %></td>
-          <td><%= user.city_id %></td>
-          <td><%= user.category_id %></td>
+          <%if !user.professional_id.nil?%>
+          <td><%= User.find(user.professional_id).name%></td>
+          <%else%>
+          <td></td>
+          <%end%>
+          <td><%= user.city.name %></td>
+          <%if !user.category.nil?%>
+          <td><%= user.category.name%></td>
+          <%else%>
+          <td></td>
+          <%end%>
+          
           <td><%= user.kind %></td>
           
           <td><%= user.status %></td>

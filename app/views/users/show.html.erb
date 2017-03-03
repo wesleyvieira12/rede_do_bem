@@ -13,8 +13,11 @@
   <dd><%= @user.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:city_id) %>:</strong></dt>
   <dd><%= @user.city_id %></dd>
+  
+  <%if !@user.category_id.nil?%>
   <dt><strong><%= model_class.human_attribute_name(:category_id) %>:</strong></dt>
-  <dd><%= @user.category_id %></dd>
+  <dd><%= @user.category.name %></dd>
+  <%end%>
   <dt><strong><%= model_class.human_attribute_name(:kind) %>:</strong></dt>
   <dd><%= @user.kind %></dd>
   <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
