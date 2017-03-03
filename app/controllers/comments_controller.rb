@@ -9,6 +9,8 @@ class CommentsController < ApplicationController
   def index
 
     @comments = Comment.where(report: true)
+
+    @comments = @comments.paginate(:page => params[:page], :per_page => 4)
     
   end
 

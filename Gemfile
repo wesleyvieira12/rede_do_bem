@@ -12,6 +12,8 @@ gem "pundit"
 
 gem "cocoon"
 
+gem 'will_paginate-bootstrap'
+
 gem "rmagick"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

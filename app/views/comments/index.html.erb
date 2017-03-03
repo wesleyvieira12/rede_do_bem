@@ -43,6 +43,8 @@
   </tbody>
 </table>
 
+<%= will_paginate @comments, renderer: BootstrapPagination::Rails %>
+
 <!--
 <% if policy(:user).createComment? %>
 <%= link_to t('.new', :default => t("helpers.links.new")),
