@@ -19,7 +19,33 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    
+    @users_professional2 = User.where(professional_id: current_user.id)
+
+    @users_professional = Array.new
+
+    @users_professional2.each do |user|
+      @users_professional.push(user)
+    end
+
+    @services_professional = Service.where(user_professional_id: current_user.id, status: "ativo")
+
+    @users_all = User.all
+
+    @services_professional.each do |service|
+
+      @users_all.each do |user|
+
+        if user.id==service.user_client_id
+          @users_professional.push(user)
+        end
+      end
+    end
+
+    @users_professional = @users_professional.uniq
+
+    @users_admin = User.all
+
   end
 
   # GET /users/1
@@ -116,6 +142,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :city_id, :category_id, :kind, :email, :password, :password_confirmation, :perfil)
+      params.require(:user).permit(:name, :city_id, :category_id, :kind, :email, :password, :password_confirmation, :perfil, :professional_id)
     end
 end

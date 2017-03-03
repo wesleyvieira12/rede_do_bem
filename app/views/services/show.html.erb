@@ -1,3 +1,7 @@
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              services_path, :class => 'btn btn-default'  %>
+
 <%- model_class = Service -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
@@ -14,7 +18,6 @@
   <dd><%= @service.status %></dd>
   <dt><strong><%= model_class.human_attribute_name(:photos) %>:</strong></dt>
   <dd><%= @photos.count %></dd>
-
 </dl>
 
 <% @photos.each do |photo| %>
@@ -23,10 +26,59 @@
 
 <% end %>
 
-<br><br><br><br>
+<br><br><br>
 
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              services_path, :class => 'btn btn-default'  %>
+<p> Comentários </p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:service_id) %></th>
+      <th><%= model_class.human_attribute_name(:status) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= link_to comment.id, comment_path(comment) %></td>
+        <td><%= comment.description %></td>
+        <td><%= comment.service_id %></td>
+        <td><%= comment.status %></td>
+        <td><%=l comment.created_at %></td>
+        <td>
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      comment_path(comment), :class => 'btn btn-default btn-xs' %>
+
+          <% if policy(:user).updateComment? %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_comment_path(comment), :class => 'btn btn-default btn-xs' %>
+          <% end %>
+
+          <% if policy(:user).destroyComment? %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      comment_path(comment),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+          <%end%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+<% if policy(:user).createComment? %>
+              <%= link_to "Comentar",
+                          novo_comentario_path(@service.id),
+                          :class => 'btn btn-primary btn-xs' %>
+<%end%>
+
+<br><br>
 
 <% if policy(:user).updateService? %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),

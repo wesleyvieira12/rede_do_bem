@@ -42,20 +42,22 @@
     </div>
     <%=f.error_span(:description) %>
   </div>
+
   <div class="form-group">
+    
     <%= f.label :user_client_id, :class => 'control-label col-lg-2' %>
+    
     <div class="col-lg-10">
-      <%= f.text_field :user_client_id, :class => 'form-control' %>
+    
+    <%= f.collection_select(:user_client_id, User.where(status: "ativo", kind: "cliente"),
+                  :id, :name,
+                 {:prompt => "Selecione o cliente"}) %>
+
     </div>
+
     <%=f.error_span(:user_client_id) %>
   </div>
-  <div class="form-group">
-    <%= f.label :user_professional_id, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :user_professional_id, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:user_professional_id) %>
-  </div>
+  
   <div class="form-group">
     <%= f.label :status, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">

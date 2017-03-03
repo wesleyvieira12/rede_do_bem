@@ -5,12 +5,27 @@ class ServicesController < ApplicationController
   # GET /services
   # GET /services.json
   def index
-    @services = Service.all
+    @services_professional = Service.where(user_professional_id: current_user.id)
+    @services_cliente = Service.where(user_client_id: current_user.id)
+    @services_admin = Service.all
   end
 
   # GET /services/1
   # GET /services/1.json
   def show
+
+    @services = Service.where(id: params[:id].to_i)
+
+    @comments_aux = Comment.all
+    @comments = Array.new
+
+    @services.each do |service|
+      @comments_aux.each do |comment|
+        if comment.service_id==service.id
+          @comments.push(comment)
+        end
+      end
+    end
     
     @photos = Array.new
 
@@ -36,7 +51,9 @@ class ServicesController < ApplicationController
   # POST /services
   # POST /services.json
   def create
+
     @service = Service.new(service_params)
+    @service.user_professional_id = current_user.id
 
     respond_to do |format|
       if @service.save
