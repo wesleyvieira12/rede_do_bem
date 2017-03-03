@@ -39,7 +39,7 @@ before_action :authenticate_user!
         format.json { render :show, status: :created, location: new_user_registration_path }
       else
         format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.json { render json: edit_user_registration_path, status: :unprocessable_entity }
       end
     end
   end
@@ -49,11 +49,11 @@ before_action :authenticate_user!
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+        format.html { redirect_to edit_user_registration_path, notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: edit_user_registration_path }
       else
         format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.json { render json: edit_user_registration_path.errors, status: :unprocessable_entity }
       end
     end
   end
