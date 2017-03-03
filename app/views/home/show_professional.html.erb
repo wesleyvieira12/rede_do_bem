@@ -30,6 +30,8 @@
       <h1>Dados do profissional</h1>
       <hr>
       <ul>
+        <%= image_tag(@user.perfil.pic.url) if @user.perfil? %>
+        <br><br>
         <li><strong>Nome:</strong> <%= @user.name%></li>
         <li><strong>E-mail:</strong> <%= @user.email%></li>
         <li><strong>Categoria:</strong> <%= @user.category.name%></li>
