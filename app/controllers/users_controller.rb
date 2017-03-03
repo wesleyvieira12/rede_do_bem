@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       @users_professional.push(user)
     end
 
-    @services_professional = Service.where(user_professional_id: current_user.id)
+    @services_professional = Service.where(user_professional_id: current_user.id, status: "ativo")
 
     @users_all = User.all
 

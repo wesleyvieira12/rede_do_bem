@@ -13,6 +13,19 @@ class ServicesController < ApplicationController
   # GET /services/1
   # GET /services/1.json
   def show
+
+    @services = Service.where(id: params[:id].to_i)
+
+    @comments_aux = Comment.all
+    @comments = Array.new
+
+    @services.each do |service|
+      @comments_aux.each do |comment|
+        if comment.service_id==service.id
+          @comments.push(comment)
+        end
+      end
+    end
     
     @photos = Array.new
 
