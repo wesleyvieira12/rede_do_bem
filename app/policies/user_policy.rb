@@ -85,7 +85,7 @@ class UserPolicy
   end
 
   def linkUsers?
-    @user.kind=="administrator" and @user.status="ativo"
+    @user.kind=="administrator" or @user.kind=="professional" and @user.status="ativo"
   end
 
   def linkStates?
@@ -106,6 +106,10 @@ class UserPolicy
 
   def linkComments?
     @user.kind=="cliente" and @user.status="ativo"
+  end
+
+  def approve?
+    @user.kind=="professional" and @user.status="ativo"
   end
 
 end

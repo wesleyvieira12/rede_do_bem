@@ -25,8 +25,10 @@
         <td><%= user.city_id %></td>
         <td><%= user.category_id %></td>
         <td><%= user.kind %></td>
+        
         <td><%= user.status %></td>
         <td><%=l user.created_at %></td>
+        
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show")),
                       user_path(user), :class => 'btn btn-default btn-xs' %>
@@ -45,7 +47,18 @@
 
           <% end %>
 
+          <% if policy(:user).approve? and user.status=="inativo" %>
+            <%= link_to "Ativar",
+                          mostrar_usuario_path(user.id),
+                          :class => 'btn btn-primary btn-xs' %>
+          <% elsif policy(:user).approve? and user.status=="ativo" %>
+            <%= link_to "Desativar",
+                          mostrar_usuario_path(user.id),
+                          :class => 'btn btn-primary btn-xs' %>
+          <% end %>
+
         </td>
+
       </tr>
     <% end %>
   </tbody>

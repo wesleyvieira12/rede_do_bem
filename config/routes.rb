@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   get 'comments/novo/:id', to:'comments#new', as: 'novo_comentario'
 
+  get 'users/novo/:id', to:'users#change', as: 'mostrar_usuario'
+
   #TELA INICIAL - Escolha das cidades
   root to: 'tela_inicial#index'  
   get '/tela_inicial/:alterar', to:'tela_inicial#index', as: 'alterar_cidade'
