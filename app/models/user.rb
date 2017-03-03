@@ -20,7 +20,7 @@ class User < ApplicationRecord
   end 
 
   def inactive_message 
-    if status='inativo'
+    if status=='inativo'
       :not_approved 
     else 
       super

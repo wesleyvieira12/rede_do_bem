@@ -6,27 +6,19 @@
                         
 
   <div class="authform">
-  <%= bootstrap_flash%>
-  <%= form_for @user, :html => { :class => "user" } do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@user.errors.count, "erro", "erros") %>:</h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-  <% end %>
-      
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  
+      <% if !devise_error_messages!.empty?%>
+        <div class="alert alert-danger" role="alert">
+          <%= devise_error_messages! %>
+        </div>
+      <%end%>
+
       <div class="form-group">
         <%= f.label :name %>
         <%= f.text_field :name, autocomplete: "off", class: "form-control" %>      
       </div>
+      
       
       <div class="form-group">
         <%= f.label :city_id%>
@@ -37,10 +29,7 @@
         <%= f.label :email %>
          <%= f.email_field :email, autocomplete: "off", autofocus: true, class:"form-control" %>
       </div>
-      <div class="form-group">
-        <%= f.label :kind %>
-        <%= f.select :kind, options_for_select([["Cliente", "cliente"], ["Profissional", "professional"]]),{}, :class => 'form-control' %>     
-      </div>
+      
       <div class="form-group" id="category_id_form">
         <%= f.label :category_id%>
       
@@ -57,9 +46,11 @@
       </div>
 
       
+      
+
       <div class="form-group">
-      <label>Confirmar senha</label>
-      <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+        <label>Senha atual</label> <i>(Nós precisamos que você coloque sua senha atual para confirmar as mudanças)</i>
+        <%= f.password_field :current_password,autocomplete: "off", class: "form-control"  %>
       </div>
       
       <%= f.submit "Cadastrar", class: "btn btn-lg btn-success btn-block" %>
@@ -77,27 +68,18 @@
 
 <script type="text/javascript">
 <% if @user.kind == "professional"%>
-document.getElementById("user_kind").value= "professional" ;
-$('#user_kind').val() = "professional";
-<%elsif @user.kind == "cliente"%>
-document.getElementById("user_kind").value= "cliente" ;
-$('#user_kind').val() = "cliente";
-<%else @user.kind == "administrator"%>
-document.getElementById("user_kind").value= "administrator" ;
-$('#user_kind').val() = "administrator";
-
+  var user_kind = "professional";
+<%else @user.kind == "cliente"%>
+  var user_kind = "client";
 <%end%>
-$(document).ready(function() {
+
   
-  $('#category_id_form').hide();
-  $('#user_kind').change(function() {
-    if ($('#user_kind').val() == 'professional') {
-      $('#category_id_form').show();
+    if (user_kind == 'professional') {
+      
+      
     } else {
-      $('#category_id_form').hide();
+      document.getElementById( 'category_id_form' ).remove();
     }
-  });
-});
 </script>
 
 <h3>Deseja cancelar sua conta?</h3>

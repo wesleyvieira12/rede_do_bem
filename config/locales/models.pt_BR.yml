@@ -62,6 +62,8 @@ pt_BR:
         kind: Tipo
         name: Nome
         password: Senha
+        password_confirmation: "Confirmar senha"
+        current_password: "Senha atual"
         status: Status
         created_at: Criado em
         updated_at: Atualizado em
