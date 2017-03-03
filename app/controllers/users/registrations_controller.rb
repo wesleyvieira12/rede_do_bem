@@ -33,6 +33,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     @user = User.new(user_params)
 
+    if @user.kind=="professional"
+      city = City.find_by_id(@user.city_id)
+      city.status="ativo"
+      city.save
+    end
+
     respond_to do |format|
       if @user.save
         format.html { redirect_to new_user_registration_path, notice: 'Usuario criado, espere a ativação do seu cadastro.' }

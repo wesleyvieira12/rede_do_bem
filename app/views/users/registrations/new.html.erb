@@ -44,7 +44,7 @@
       
       <div class="form-group">
         <%= f.label :city_id%>
-        <%= f.collection_select(:city_id, City.where(status: "ativo"), :id, :city_state, {}, {class: 'form-control'})%>
+        <%= f.collection_select(:city_id, City.all, :id, :city_state, {}, {class: 'form-control'})%>
       </div>
 
       <div class="form-group">
