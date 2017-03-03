@@ -14,6 +14,9 @@
                             <h3 class="panel-title">Escolha sua cidade</h3>
                         </div>
                         <br>
+                        
+          <%= bootstrap_flash %>
+        
                         <%= form_tag(controller: "home", action: "index") do %>
 						  <label>Cidade</label>
 						  <%= select_tag(:id_cidade,options_from_collection_for_select(City.where(status: "ativo"), :id, :name),class: "form-control") %>

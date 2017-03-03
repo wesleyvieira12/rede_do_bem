@@ -47,25 +47,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to edit_user_registration_path, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: edit_user_registration_path }
-      else
-        format.html { render :edit }
-        format.json { render json: edit_user_registration_path.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    session[:id_cidade] = user_params[:city_id]
+    user_params[:password_confirmation] = user_params[:password]
+    super
   end
 
   private
