@@ -45,6 +45,10 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
 
+    
+
+    if params[:name]==nil
+
     @users_professional2 = User.where(professional_id: current_user.id)
 
     @users_professional = Array.new
@@ -66,7 +70,36 @@ class UsersController < ApplicationController
         end
       end
     end
-    
+
+  else
+
+    name = params[:name].to_s
+
+    @users_professional2 = User.where(professional_id: current_user.id)
+
+    @users_professional = Array.new
+
+    @users_professional2.each do |user|
+      if user.name==name
+        @users_professional.push(user)
+      end
+    end
+
+    @services_professional = Service.where(user_professional_id: current_user.id, status: "ativo")
+
+    @users_all = User.all
+
+    @services_professional.each do |service|
+
+      @users_all.each do |user|
+
+        if user.id==service.user_client_id and user.name==name
+          @users_professional.push(user)
+        end
+      end
+    end
+
+  end
     
     @users_professional = @users_professional.paginate(:page => params[:page], :per_page => 8)
 
@@ -164,7 +197,7 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+        @user = User.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

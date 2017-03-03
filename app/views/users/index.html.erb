@@ -3,6 +3,13 @@
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 
+<form action="users">
+  Nome:<br>
+  <input type="text" name="name">
+  <br>
+  <input type="submit">
+</form>
+
 <table class="table table-striped">
   <thead>
     <tr>
