@@ -6,29 +6,16 @@ class HomeController < ApplicationController
 	def index
 		#Usuarios de uma determinada cidade
 
-		@images = Array.new
-		count = 0
-
-		@services_all = Service.all
 		@images_all = ImageService.all
+		@images = Array.new
 
-		@services_all.each do |service|
+		@images_all.each do |image|
+			@images.push(image)
 
-			if count==8
+			if @images.count>7
 				break
 			end
-
-			if service.status=="ativo"
-				
-				@images_all.each do |image|
-					if image.service_id==service.id
-						@images.push(image)
-						count = count+1
-					end
-				end
-			end
 		end
-
 		
 		@users = @q.result().where(kind:1, status: "ativo", city_id: @city)
 		@users = @users.joins("INNER JOIN categories c ON users.category_id = c.id").distinct
