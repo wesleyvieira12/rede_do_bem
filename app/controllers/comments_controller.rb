@@ -80,9 +80,21 @@ class CommentsController < ApplicationController
   def destroy
     @service_id = @comment.service_id
     @comment.destroy
-    respond_to do |format|
-      format.html { redirect_to service_path(@service_id), notice: 'Comment was successfully destroyed.' }
-      format.json { head :no_content }
+
+    if current_user.kind=="administrator"
+
+      respond_to do |format|
+        format.html { redirect_to comments_path, notice: 'Comment was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+
+    else
+
+      respond_to do |format|
+        format.html { redirect_to service_path(@service_id), notice: 'Comment was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+
     end
   end
 
