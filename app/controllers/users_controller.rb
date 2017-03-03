@@ -19,8 +19,33 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users_professional = User.where(professional_id: current_user.id)
+    
+    @users_professional2 = User.where(professional_id: current_user.id)
+
+    @users_professional = Array.new
+
+    @users_professional2.each do |user|
+      @users_professional.push(user)
+    end
+
+    @services_professional = Service.where(user_professional_id: current_user.id)
+
+    @users_all = User.all
+
+    @services_professional.each do |service|
+
+      @users_all.each do |user|
+
+        if user.id==service.user_client_id
+          @users_professional.push(user)
+        end
+      end
+    end
+
+    @users_professional = @users_professional.uniq
+
     @users_admin = User.all
+
   end
 
   # GET /users/1

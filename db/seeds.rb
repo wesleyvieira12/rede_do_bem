@@ -26,15 +26,15 @@ cidade2.save
 
 puts "Criando usuários"
 
-usuario_cliente = User.create(name: 'Cliente', email: "cliente@email.com", password:"12345678", city: cidade, category: nil, kind: 0, status: 0)
-usuario_cliente.save
-usuario_cliente2 = User.create(name: 'Cliente2', email: "cliente2@email.com", password:"12345678", city: cidade2, category: nil, kind: 0, status: 0)
-usuario_cliente2.save
 usuario_profissional =User.create(name: 'Profissional', email: "profissional@email.com", password:"12345678", city: cidade, category: categoria, kind: 1, status: 0)
 usuario_profissional.save
 usuario_profissional2 =User.create(name: 'Profissional 2', email: "profissional2@email.com", password:"12345678", city: cidade2, category: categoria2, kind: 1, status: 0)
 usuario_profissional2.save
-usuario_administrador =User.create(name: 'Administrador', email: "administrador@email.com", password:"12345678", city: cidade, category: nil, kind: 2, status: 0)
+usuario_cliente = User.create(name: 'Cliente', email: "cliente@email.com", password:"12345678", city: cidade, category: nil, kind: 0, status: 0, professional_id: 1)
+usuario_cliente.save
+usuario_cliente2 = User.create(name: 'Cliente2', email: "cliente2@email.com", password:"12345678", city: cidade2, category: nil, kind: 0, status: 0, professional_id: 2)
+usuario_cliente2.save
+usuario_administrador = User.create(name: 'Administrador', email: "administrador@email.com", password:"12345678", city: cidade, category: nil, kind: 2, status: 0)
 usuario_administrador.save
 
 ############### CRIAÇÃO DE SERVIÇOS #######################
