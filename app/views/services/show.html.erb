@@ -3,22 +3,66 @@
               services_path, :class => 'btn btn-default'  %>
 
 <%- model_class = Service -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
-</div>
+<div class="row" >
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @service.description %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:user_client_id) %>:</strong></dt>
-  <dd><%= @service.user_client_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:user_professional_id) %>:</strong></dt>
-  <dd><%= @service.user_professional_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
-  <dd><%= @service.status %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:photos) %>:</strong></dt>
-  <dd><%= @photos.count %></dd>
-</dl>
+  <div class="col-sm-4">
+
+  <div class="page-header">
+    <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  </div>
+
+  <dl class="dl-horizontal">
+    <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+    <dd><%= @service.description %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:user_client_id) %>:</strong></dt>
+    <dd><%= @service.user_client_id %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:user_professional_id) %>:</strong></dt>
+    <dd><%= @service.user_professional_id %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
+    <dd><%= @service.status %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:photos) %>:</strong></dt>
+    <dd><%= @photos.count %></dd>
+  </dl>
+
+  </div>
+
+  <div class="col-sm-7 col-offset-1">  
+
+    <div class="page-header">
+
+      <h1>Profissional</h1>
+    
+    </div>
+
+      <div class="row">
+
+        <div class="col-sm-2">
+
+        <%= image_tag(@service.user_professional.perfil.thumb.url) if @service.user_professional.perfil? %>
+
+        </div>
+
+        <div class="col-sm-7">  
+
+      <ul>
+        
+        <li><strong>Nome:</strong> <%= @service.user_professional.name%></li>
+        <li><strong>E-mail:</strong> <%= @service.user_professional.email%></li>
+        <% if @service.user_professional.category!=nil %>
+        <li><strong>Categoria:</strong> <%= @service.user_professional.category.name %></li>
+        <% else %>
+        <li><strong>Categoria:</strong> sem categoria</li>
+        <% end %>
+      </ul>
+
+        </div>
+
+      </div>
+
+  </div>
+
+<br>
+</div>
 
 <% @photos.each do |photo| %>
 
