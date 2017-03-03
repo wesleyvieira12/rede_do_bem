@@ -46,3 +46,6 @@
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_category_path,
             :class => 'btn btn-primary' %>
+
+<br>
+<%= will_paginate @categories, renderer: BootstrapPagination::Rails %>

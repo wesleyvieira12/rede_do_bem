@@ -134,3 +134,8 @@
             :class => 'btn btn-primary' %>
 
 <% end %>
+
+<br>
+
+<%= will_paginate @users_admin, renderer: BootstrapPagination::Rails %>
+<%= will_paginate @users_professional, renderer: BootstrapPagination::Rails %>

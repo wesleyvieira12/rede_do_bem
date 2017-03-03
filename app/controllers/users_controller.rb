@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   
+  require 'will_paginate/array'
+  
   before_action :authenticate_user!
   before_action :check
   before_action :set_user, only: [:show, :edit, :update, :destroy]
@@ -66,8 +68,10 @@ class UsersController < ApplicationController
     end
 
     @users_professional = @users_professional.uniq
+    @users_professional = @users_professional.paginate(:page => params[:page], :per_page => 8)
 
     @users_admin = User.all
+    @users_admin = @users_admin.paginate(:page => params[:page], :per_page => 8)
 
   end
 
