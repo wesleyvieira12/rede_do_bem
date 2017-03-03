@@ -4,26 +4,36 @@ class CommentsController < ApplicationController
 
   # GET /comments
   # GET /comments.json
+
+
   def index
 
-    @services = Service.where(user_client_id: current_user.id)
-
-    @comments_aux = Comment.all
-    @comments = Array.new
-
-    @services.each do |service|
-      @comments_aux.each do |comment|
-        if comment.service_id==service.id
-          @comments.push(comment)
-        end
-      end
-    end
+    @comments = Comment.where(report: true)
     
   end
 
   # GET /comments/1
   # GET /comments/1.json
   def show
+  end
+
+  def report
+
+    @comment = Comment.find_by_id(params[:id])
+    @comment.report = true
+
+    respond_to do |format|
+
+      if @comment.save
+        format.html { redirect_to service_path(@comment.service_id), notice: 'Comentário denunciado.' }
+        format.json { render :show, status: :created, location: service_path(@comment.service_id) }
+      else
+        format.html { redirect_to service_path(@comment.service_id), notice: 'Comentário não denunciado.' }
+        format.json { render :show, status: :created, location: service_path(@comment.service_id) }
+      end
+
+    end
+
   end
 
   # GET /comments/new
@@ -72,9 +82,21 @@ class CommentsController < ApplicationController
   def destroy
     @service_id = @comment.service_id
     @comment.destroy
-    respond_to do |format|
-      format.html { redirect_to service_path(@service_id), notice: 'Comment was successfully destroyed.' }
-      format.json { head :no_content }
+
+    if current_user.kind=="administrator"
+
+      respond_to do |format|
+        format.html { redirect_to comments_path, notice: 'Comment was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+
+    else
+
+      respond_to do |format|
+        format.html { redirect_to service_path(@service_id), notice: 'Comment was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+
     end
   end
 

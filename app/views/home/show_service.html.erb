@@ -24,27 +24,39 @@
 </div>
 </div>
 <div class="container">
+
+  <h2> <%= @service.description %> </h2>
+
   <div class="row">
 
-            <div class="col-lg-12">
-                <h2 class="page-header"><%= @service.description%></h2>
-            </div>
-            <div class="col-sm-4">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" style="margin:0.2em;" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>                
+            <% @images.each do |image| %>
+
+              <div class="col-sm-3 portfolio-item">
+                
+                <%= image_tag(image.avatar.pic.url) if image.avatar? %>
+
+              </div>
+
+            <% end %>               
   </div>
   <h3><span class="glyphicon glyphicon-comment"></span> Comentários</h3>
-            <% @comments.each do |c|%>  
             <table class="table">
+            <thead>
+              <tr>
+                <th>Usuário</th>
+                <th>Comentário</th>
+                <th>Data</th>
+              </tr>
+            </thead>
+            <% @comments.each do |c|%>  
               <tbody>
-                <tr class="info">
+                <tr>
                   <th><%=@service.user_client.name%></th>
                   <th><%= c.description%></th>
                   <th><%= c.created_at.strftime("%d/%m/%Y, %H:%M")%></th>
                 </tr>
               </tbody>
-            </table>
             <% end %>
+            
+            </table>
 </div>

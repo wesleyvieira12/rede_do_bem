@@ -27,6 +27,8 @@ class CitiesController < ApplicationController
   def create
     @city = City.new(city_params)
 
+    @city.status="inativo"
+
     respond_to do |format|
       if @city.save
         format.html { redirect_to @city, notice: 'City was successfully created.' }

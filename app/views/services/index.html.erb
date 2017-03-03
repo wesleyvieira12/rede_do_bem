@@ -22,8 +22,8 @@
       <tr>
         <td><%= link_to service.id, service_path(service) %></td>
         <td><%= service.description %></td>
-        <td><%= service.user_client_id %></td>
-        <td><%= service.user_professional_id %></td>
+        <td><%= service.user_client.name %></td>
+        <td><%= service.user_professional.name %></td>
         <td><%= service.status %></td>
         <td><%=l service.created_at %></td>
         <td>
@@ -63,8 +63,8 @@
       <tr>
         <td><%= link_to service.id, service_path(service) %></td>
         <td><%= service.description %></td>
-        <td><%= service.user_client_id %></td>
-        <td><%= service.user_professional_id %></td>
+        <td><%= service.user_client.name %></td>
+        <td><%= service.user_professional.name %></td>
         <td><%= service.status %></td>
         <td><%=l service.created_at %></td>
         <td>
@@ -104,8 +104,8 @@
       <tr>
         <td><%= link_to service.id, service_path(service) %></td>
         <td><%= service.description %></td>
-        <td><%= service.user_client_id %></td>
-        <td><%= service.user_professional_id %></td>
+        <td><%= service.user_client.name %></td>
+        <td><%= service.user_professional.name %></td>
         <td><%= service.status %></td>
         <td><%=l service.created_at %></td>
         <td>

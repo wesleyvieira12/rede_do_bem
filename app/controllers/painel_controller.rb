@@ -5,9 +5,17 @@ class PainelController < ApplicationController
   before_action :check
 
   def index
-  	@count_user = User.count
-  	@count_service = Service.count
-  	@count_comment = Comment.count
+
+    if current_user.kind!="administrator"
+
+      redirect_to services_path
+
+    else
+
+    	@count_user = User.count
+    	@count_service = Service.count
+    	@count_comment = Comment.count
+    end
   end
 
   def check

@@ -17,8 +17,8 @@ pt_BR:
         one: Estado
         other: Estados
       user:
-        one: Usuario
-        other: Usuarios
+        one: Usuário
+        other: Usuários
     attributes:
       category:
         id: '#'

@@ -65,6 +65,14 @@
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
           <%end%>
+
+          <% service = Service.find_by_id(comment.service_id) %>
+          <% if policy(:user).linkReport? and service.user_client_id!=current_user.id %>
+              <%= link_to "Denunciar",
+                          report_comentario_path(comment.id),
+                          :class => 'btn btn-primary btn-xs' %>
+          <%end%>
+
         </td>
       </tr>
     <% end %>

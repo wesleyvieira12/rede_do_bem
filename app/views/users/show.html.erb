@@ -4,6 +4,11 @@
 </div>
 
 <dl class="dl-horizontal">
+
+  <% if @user.perfil? %>
+    <dt> <dd> <%= image_tag(@user.perfil.pic.url) %> </dd> </dt> <br><br>
+  <% end %>
+
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @user.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:city_id) %>:</strong></dt>
@@ -14,6 +19,8 @@
   <dd><%= @user.kind %></dd>
   <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
   <dd><%= @user.status %></dd>
+
+  
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

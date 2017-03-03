@@ -77,7 +77,7 @@ class UserPolicy
   end
 
   def destroyComment?
-    @user.kind=="cliente" and @user.status="ativo"
+    @user.kind=="cliente" or @user.kind=="administrator" and @user.status="ativo"
   end
   
   def linkHome?
@@ -105,8 +105,12 @@ class UserPolicy
   end
 
   def linkComments?
-    false
+    @user.kind=="administrator" and @user.status="ativo"
     #@user.kind=="cliente" and @user.status="ativo"
+  end
+
+  def linkReport?
+    @user.kind=="professional" or @user.kind=="cliente" and @user.status="ativo"
   end
 
   def approve?

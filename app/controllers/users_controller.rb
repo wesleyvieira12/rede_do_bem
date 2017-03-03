@@ -9,11 +9,34 @@ class UsersController < ApplicationController
     true
   end
 
+  def admin?
+    current_user.kind == "administrator"
+  end
+
   def check
     if current_user.status=="inativo"
       sign_out(current_user)
       redirect_to home_path
     end
+  end
+
+  def report
+
+    @comment = Comment.find_by_id(params[:id])
+    @comment.report = true
+
+    respond_to do |format|
+
+      if @comment.save
+        format.html { redirect_to service_path(@comment.service_id), notice: 'Comentário denunciado.' }
+        format.json { render :show, status: :created, location: service_path(@comment.service_id) }
+      else
+        format.html { redirect_to service_path(@comment.service_id), notice: 'Comentário não denunciado.' }
+        format.json { render :show, status: :created, location: service_path(@comment.service_id) }
+      end
+
+    end
+
   end
 
   # GET /users
