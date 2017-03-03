@@ -5,7 +5,20 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+
+    @services = Service.where(user_client_id: current_user.id)
+
+    @comments_aux = Comment.all
+    @comments = Array.new
+
+    @services.each do |service|
+      @comments_aux.each do |comment|
+        if comment.service_id==service.id
+          @comments.push(comment)
+        end
+      end
+    end
+    
   end
 
   # GET /comments/1

@@ -51,10 +51,6 @@
             <%= link_to "Ativar",
                           mostrar_usuario_path(user.id),
                           :class => 'btn btn-primary btn-xs' %>
-          <% elsif policy(:user).approve? and user.status=="ativo" %>
-            <%= link_to "Desativar",
-                          mostrar_usuario_path(user.id),
-                          :class => 'btn btn-primary btn-xs' %>
           <% end %>
 
         </td>

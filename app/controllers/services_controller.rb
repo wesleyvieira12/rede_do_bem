@@ -5,7 +5,9 @@ class ServicesController < ApplicationController
   # GET /services
   # GET /services.json
   def index
-    @services = Service.all
+    @services_professional = Service.where(user_professional_id: current_user.id)
+    @services_cliente = Service.where(user_client_id: current_user.id)
+    @services_admin = Service.all
   end
 
   # GET /services/1
@@ -25,7 +27,9 @@ class ServicesController < ApplicationController
   # POST /services
   # POST /services.json
   def create
+
     @service = Service.new(service_params)
+    @service.user_professional_id = current_user.id
 
     respond_to do |format|
       if @service.save
