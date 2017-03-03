@@ -19,7 +19,8 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users_professional = User.where(professional_id: current_user.id)
+    @users_admin = User.all
   end
 
   # GET /users/1
@@ -116,6 +117,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :city_id, :category_id, :kind, :email, :password, :password_confirmation, :perfil)
+      params.require(:user).permit(:name, :city_id, :category_id, :kind, :email, :password, :password_confirmation, :perfil, :professional_id)
     end
 end
