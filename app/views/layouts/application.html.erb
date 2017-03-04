@@ -7,8 +7,16 @@
     <title><%= content_for?(:title) ? yield(:title) : "Rede do Bem" %></title>
 
     <%= csrf_meta_tags %>
+    <% if controller_name == 'tela_inicial' || controller_name=='home' %>
+        <%= stylesheet_link_tag "application", :media => "all" %>
+        <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Open+Sans:600italic,400,800,700,300" %>
+        <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=BenchNine:300,400,700" %>
+    <% else %>
 
-    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= stylesheet_link_tag "admin", :media => "all"%>
+    
+    <%= javascript_include_tag "admin" %>
+    <% end %>
 
     <!-- For third-generation iPad with high-resolution Retina display: -->
     <!-- Size should be 144 x 144 pixels -->
@@ -29,8 +37,7 @@
     <!-- For all other devices -->
     <!-- Size should be 32 x 32 pixels -->
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
-
-    <%= javascript_include_tag "application" %>
+   
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
@@ -41,98 +48,64 @@
   <% if controller_name == 'tela_inicial' %>
     <%= yield %>
   <% elsif controller_name ==  'home' %>
-    <style type="text/css">
-    body {
-        padding-top: 48px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-        background: #fff;
-    }
-
-    .img-center {
-        margin: 0 auto;
-    }
-
-   .portfolio-item{
-        margin-top: 0.8em;
-    }
-    </style>
-        <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <%= link_to root_path, class: "navbar-brand" do%>
-                <i class="fa fa-globe"></i> Rede do Bem
-                <% end %>
-            </div>
-            
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <% if user_signed_in? %>
-                    
-                    <% if current_user.status=="ativo" %>
-                        <li>
-                            <%= link_to current_user.name, painel_path%>
-                        </li>
-                    <% else %>
-                        
-                        <li>
-                            <a href="#"> <!-- Recurso Tecnológico Improvisado -->
-                                Acesso Restrito
-                            </a>
-                        </li>
-
-                        <li><%= link_to destroy_user_session_path, method: :delete do%><i class="fa fa-sign-out fa-fw"></i> Sair <% end %>
-                        <li>
-
-                    <% end %>
-
-                    <% else %>
-                    <li>
-                        <%= link_to "Entrar",new_user_session_path %>
-                    </li>
-                    <li>
-                        <%= link_to "Cadastrar-se",new_user_registration_path %>
-                    </li>
-                    <% end %>
-                    
-                    <li>
-                        <%= link_to  alterar_cidade_path(1) do %>
-                          <%=@city.name + "-"+@city.state.name %> <small style="color: #fff">Alterar</small>
-                        <% end %>
-                    </li>
-                </ul>
-
-            </div>
-             
-        </div>
-        <!-- /.container -->
-    </nav>
     
-        
-        <%= yield %>
-        <footer style="margin: 0; padding: 0;">
-        <br>
-        <center>
-            <p>&copy; 2017 By I9SoluçõesWeb. Todos os direitos reservados.</p>
-            <!--<ul class="list-inline">
-                <li>
-                    <a href="#">Privacy</a>
-                </li>
-                <li>
-                    <a href="#">Terms</a>
-                </li>
-                <li>
-                    <a href="#">FAQ</a>
-                </li>
-            </ul>-->
-        </center>
-        <br>
+    <!-- ====================================================
+    header section -->
+    <header class="top-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-5 header-logo">
+                    <br>
+                    <a href="index.html"><img src="img/logo.png" alt="" class="img-responsive logo"></a>
+                </div>
+
+                <div class="col-md-7">
+                    <nav class="navbar navbar-default">
+                      <div class="container-fluid nav-bar">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                          </button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                          
+                          <ul class="nav navbar-nav navbar-right">
+                            <li><a class="menu active" href="#home" >Home</a></li>
+                            <li><a class="menu" href="#about">about us</a></li>
+                            <li><a class="menu" href="#service">our services </a></li>
+                            <li><a class="menu" href="#team">our team</a></li>
+                            <li><a class="menu" href="#contact"> contact us</a></li>
+                          </ul>
+                        </div><!-- /navbar-collapse -->
+                      </div><!-- / .container-fluid -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header> <!-- end of header area -->
+
+    <%= yield %>
+
+    <!-- footer starts here -->
+    <footer class="footer clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 footer-para">
+                    <p>&copy;Mostafizur All right reserved</p>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-skype"></i></a>
+                </div>
+            </div>
+        </div>
     </footer>
   <% else %>
 	<% if user_signed_in? %>
@@ -461,7 +434,9 @@
     <% end %>  
 
 <% end %>
-
+<% if controller_name == 'tela_inicial' || controller_name=='home' %>
+<%= javascript_include_tag "application" %>   
+<% end %> 
   </body>
 </html>
 

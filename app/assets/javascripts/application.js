@@ -10,8 +10,14 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require cocoon
-//= require jquery_ujs
-//= require bootstrap_sb_admin_base_v2
+
+//= require custom
+//= require jquery_2
+//= require maps
+//= require gmaps
+//= require SmoothScroll
+//= require bootstrap_min.js
+//= require style
+
+
 
