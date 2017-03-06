@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   get 'home/index', to:'users#index', as:'mostrar_servico'
 
+  get 'users/show/:id', to:'users#destacar', as:'destacar_usuario'
+
   get 'users/novo/:id', to:'users#change', as: 'mostrar_usuario'
 
   get 'users/show', to:'users#desactive', as: 'desactive_usuario'

@@ -15,8 +15,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:perfil) %></th>
-      <th>Autorizado por</th>
+      <th>Criado por</th>
       <th><%= model_class.human_attribute_name(:city_id) %></th>
       <th><%= model_class.human_attribute_name(:category_id) %></th>
       <th><%= model_class.human_attribute_name(:kind) %></th>
@@ -33,7 +32,6 @@
         <tr>
           <td><%= link_to user.id, user_path(user) %></td>
           <td><%= user.name %></td>
-          <td><%= image_tag(user.perfil.thumb.url) if user.perfil? %></td>
           <td><%= User.find(user.professional_id).name  %></td>
           <td><%= user.city.name %></td>
           <% if !user.category_id.nil?%>
@@ -67,7 +65,7 @@
               <%= link_to "Desativar",
                             mostrar_usuario_path(user.id),
                             :class => 'btn btn-primary btn-xs' %>
-            <% elsif policy(:user).desactive? and user.status=="inativo" %>
+            <% elsif policy(:user).desactive? and user.status=="inativo" and user.professional_id==current_user.id %>
             <%= link_to "Ativar",
                             mostrar_usuario_path(user.id),
                             :class => 'btn btn-primary btn-xs' %>
@@ -89,7 +87,6 @@
         <tr>
           <td><%= link_to user.id, user_path(user) %></td>
           <td><%= user.name %></td>
-          <td><%= image_tag(user.perfil.thumb.url) if user.perfil? %></td>
           <%if !user.professional_id.nil?%>
           <td><%= User.find(user.professional_id).name%></td>
           <%else%>
@@ -133,6 +130,12 @@
             <%= link_to "Ativar",
                             mostrar_usuario_path(user.id),
                             :class => 'btn btn-primary btn-xs' %>
+            <% end %>
+
+            <% if policy(:user).destacar? and user.status=="ativo" %>
+                <%= link_to "Destacar",
+                            destacar_usuario_path(user.id),
+                            :class => 'btn btn-success btn-xs' %>
             <% end %>
 
           </td>

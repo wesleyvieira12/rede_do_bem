@@ -15,6 +15,24 @@ class UsersController < ApplicationController
     current_user.kind == "administrator"
   end
 
+  def destacar
+    @user = User.find_by_id(params[:id].to_i)
+    @user.destaque = true
+    
+    respond_to do |format|
+
+      if @user.save
+        format.html { redirect_to user_path(@user), notice: 'Profissional em Destaque.' }
+        format.json { render :show, status: :created, location: user_path(@user) }
+      else
+        format.html { redirect_to user_path(@user), notice: 'Profissional não destacado.' }
+        format.json { render :show, status: :created, location: user_path(@user) }
+      end
+
+    end
+
+  end
+
   def desactive
     @user = User.find_by_id(params[:id].to_i)
     @user.status = "desativo"
