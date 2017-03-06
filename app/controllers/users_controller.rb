@@ -79,7 +79,7 @@ class UsersController < ApplicationController
     @users_professional = @users_professional.uniq
     @users_professional = @users_professional.paginate(:page => params[:page], :per_page => 8)
 
-    @users_admin = User.all
+    @users_admin = User.where("name LIKE :l3_name", {:l3_name => "#{name}%"})
     @users_admin = @users_admin.paginate(:page => params[:page], :per_page => 8)
 
   end
