@@ -105,6 +105,8 @@ class UsersController < ApplicationController
       end
     end
 
+    if current_user.kind=="administrator"
+
     respond_to do |format|
 
       if @user_here.status=="ativo"
@@ -120,6 +122,29 @@ class UsersController < ApplicationController
       end
 
     end
+
+  elsif current_user.kind=="professional" and @user_here.actived==false
+
+    @user_here.actived = true
+
+    respond_to do |format|
+
+      if @user_here.status=="ativo"
+        @user_here.status="inativo"
+        @user_here.save
+        format.html { redirect_to user_path, notice: 'Status Alterado.' }
+        format.json { render :show, status: :created, location: user_path }
+      else
+        @user_here.status="ativo"
+        @user_here.save
+        format.html { redirect_to user_path, notice: 'Status Alterado.' }
+        format.json { render :show, status: :created, location: user_path }
+      end
+
+    end
+
+  end
+
   end
 
   # GET /users/new

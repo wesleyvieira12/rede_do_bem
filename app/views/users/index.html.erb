@@ -63,6 +63,12 @@
 
             <% end %>
 
+            <% if policy(:user).desactive? and user.status=="inativo" and user.actived==false %>
+              <%= link_to "Ativar",
+                            mostrar_usuario_path(user.id),
+                            :class => 'btn btn-primary btn-xs' %>
+            <% end %>
+
           </td>
 
         </tr>
