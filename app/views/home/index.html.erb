@@ -63,8 +63,9 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="single-service">
                         
-                                <img class="img-thumbnail img-responsive" src="img/item1.jpg" alt="">
-                            
+                                <%= link_to busca_category_id_path(c.category_id) do %>
+                                <%= image_tag(c.category.foto.pic.url, class: "img-thumbnail img-responsive")%>
+                                <% end %>
                         <h3 style="margin-top: 0px;"><%= c.category.name%></h3>
                     </div>
                 </div>
