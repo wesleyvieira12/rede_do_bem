@@ -48,6 +48,7 @@
             <div class="row">
                 <h2>Atividades</h2>
                 <h4>Clique em alguma atividade para visualizar os profissionais</h4>
+
                 <% @categories.each do |c| %>
 
                 <div class="col-md-3 col-sm-6">
@@ -57,6 +58,7 @@
                                 <%= image_tag(c.category.foto.pic.url, class: "img-thumbnail img-responsive")%>
                                 <% end %>
                         <h3 style="margin-top: 0px;"><%= c.category.name%></h3>
+                        
                     </div>
                 </div>
                 <% end %>
