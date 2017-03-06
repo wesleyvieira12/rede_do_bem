@@ -5,6 +5,7 @@ class HomeController < ApplicationController
 
 	def index
 		
+		@photos = ImageSlider.all
 		@sobre = Sobre.first
 
 		@images_all = ImageService.order("id DESC")
