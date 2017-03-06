@@ -1,6 +1,10 @@
+
+<%= bootstrap_flash %>
+
 <section class="slider" id="home">
         <div class="container-fluid">
             <div class="row">
+
                 <div id="carouselHacked" class="carousel slide carousel-fade" data-ride="carousel">
                     <div class="header-backup"></div>
                     <!-- Wrapper for slides -->
@@ -243,14 +247,14 @@
 
 
     <!-- contact section starts here -->
-    <section class="service text-center" id="contat">
+    <section class="service text-center" id="contact">
         <div class="container">
             <div class="row">
                 
                     <div class="contact-heading text-center">
                         <h2>Contato</h2>
                     </div>
-                    
+
                     <div class="col-md-5 contact-info text-left">
                         <h3>Informações de contato</h3>
                         <div class="info-detail">
@@ -259,6 +263,8 @@
                             <ul><li><i class="fa fa-fax"></i><span>Fax:</span> (123) 984-1234</li></ul>
                             <ul><li><i class="fa fa-envelope"></i><span>Email:</span> <a class="__cf_email__" href="/cdn-cgi/l/email-protection" data-cfemail="7d14131b123d19121e09120f531e1210">[email&#160;protected]</a><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script></li></ul>
                         </div>
+
+                        <%= bootstrap_flash%>
                     </div>
 
                     <% contato = Contato.new %>
@@ -305,7 +311,7 @@
 
                             <div class="actions">
                                 <%= f.submit 'Enviar', :class => 'submit-btn' %>
-                            </div>
+                            </div><br>
 
                         </form>
                     </div>

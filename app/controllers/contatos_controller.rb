@@ -28,8 +28,8 @@ class ContatosController < ApplicationController
 
     respond_to do |format|
       if @contato.save
-        format.html { redirect_to home_path, notice: 'Contato was successfully created.' }
-        format.json { render :show, status: :created, location: home_path }
+        format.html { redirect_to '/home#contact', notice: 'Contato was successfully created.' }
+        format.json { render :show, status: :created, location: '/home#contact' }
       else
         format.html { render :new }
         format.json { render json: @contato.errors, status: :unprocessable_entity }
