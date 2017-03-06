@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Image Sliders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th> # </th>
+      <th> Slider ID </th>
+      <th> Figure </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @image_sliders.each do |image_slider| %>
+      <tr>
+        <td> <%= image_slider.id %> </td> 
+        <td> <%= image_slider.slider_id %> </td> 
+        <td><%= image_tag(image_slider.figure.pic.url) if image_slider.figure? %></td>
+        <td><%= link_to 'Show', image_slider %></td>
+        <td><%= link_to 'Edit', edit_image_slider_path(image_slider) %></td>
+        <td><%= link_to 'Destroy', image_slider, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Image Slider', new_image_slider_path %>

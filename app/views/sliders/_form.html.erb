@@ -1,0 +1,46 @@
+<%= form_for @slider, :html => { :class => "form-horizontal slider" } do |f| %>
+
+  <% if @slider.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@slider.errors.count, "error") %> prohibited this slider from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @slider.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <p>
+
+    <%= link_to_add_association('Adicionar imagem', f, :image_sliders, 'data-association-insertion-node' => "#list-image ol", 'data-association-insertion-method' => "append", :class => 'button-xs') %>
+
+  </p>
+
+  <fieldset id="list-image">
+
+    <ol>
+
+      <%= f.fields_for :image_sliders do |image| %>
+
+        <%= render partial: "image_slider_fields", locals: {f: image} %>
+
+        <% end %>
+
+    </ol>
+
+  </fieldset>
+
+   <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                sliders_path, :class => 'btn btn-default' %>
+    </div>
+    </div>
+
+<% end %>

@@ -1,0 +1,40 @@
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              sliders_path, :class => 'btn btn-default'  %>
+
+<%- model_class = Slider -%>
+
+<div class="row" >
+
+  <div class="col-sm-4">
+
+	  <div class="page-header">
+	    <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+	  </div>
+
+	</div>
+
+<% @photos.each do |photo| %>
+
+  <td><%= image_tag(photo.figure.pic.url) if photo.figure? %></td>
+
+<% end %>
+
+</div>
+
+<br><br>
+
+<% if policy(:user).updateSlider? %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_slider_path(@slider), :class => 'btn btn-default' %>
+<% end %>
+
+<% if policy(:user).destroySlider? %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              slider_path(@slider),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+<% end %>
+
+<br><br>
