@@ -4,6 +4,15 @@
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 
+<%= search_form_for @q do |f| %>
+          <div>
+            <%= f.search_field :name_cont, placeholder: 'Nome' do %>
+            <% end %>
+            <%= f.submit 'Procurar' %>
+          </div>
+  <% end %>
+<br>
+
 <table class="table table-striped">
   <thead>
     <tr>

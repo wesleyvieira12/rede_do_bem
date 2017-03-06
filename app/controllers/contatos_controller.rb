@@ -4,7 +4,8 @@ class ContatosController < ApplicationController
   # GET /contatos
   # GET /contatos.json
   def index
-    @contatos = Contato.all
+    @q = Contato.ransack(params[:q])
+    @contatos = @q.result(distinct: true)
   end
 
   # GET /contatos/1
