@@ -11,7 +11,7 @@
 // about supported directives.
 //
 
-
+//= require custom
 //= require jquery_2
 //= require SmoothScroll
 //= require bootstrap_min.js
