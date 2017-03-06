@@ -1,0 +1,31 @@
+<%= form_for(image_slider) do |f| %>
+  <% if image_slider.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(image_slider.errors.count, "error") %> prohibited this image_slider from being saved:</h2>
+
+      <ul>
+      <% image_slider.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :slider_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :slider_id, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:slider_id) %>
+  </div>
+
+  <div class="four wide field">
+    <%= f.label :figure %><br>
+    <%= image_tag(@image_slider.figure_url(:thumb)) if @image_slider.figure? %>
+    <%= f.file_field :figure %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

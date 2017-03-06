@@ -1,0 +1,19 @@
+
+
+<li class="control-group nested-fields">
+
+	<div class="controls">
+
+	    <div class="controls">
+	    <%= f.label :figure %> <br>
+	    <%= image_tag(f.object.figure_url(:thumb)) if f.object.figure? %>
+    	<%= f.file_field :figure, :cols => "20", :rows => "10" %>
+	    </div>
+
+	  	<div class="controls">
+    		<%= link_to_remove_association "Remover", f %>
+  		</div>
+
+	</div>
+
+</li>

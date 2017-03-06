@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :image_sliders
+  resources :sliders
   resources :sobres
   resources :contatos
   resources :image_services

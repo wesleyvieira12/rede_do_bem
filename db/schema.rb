@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170306173306) do
+ActiveRecord::Schema.define(version: 20170306182033) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -56,6 +56,14 @@ ActiveRecord::Schema.define(version: 20170306173306) do
     t.index ["service_id"], name: "index_image_services_on_service_id"
   end
 
+  create_table "image_sliders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "slider_id"
+    t.string   "figure"
+    t.index ["slider_id"], name: "index_image_sliders_on_slider_id"
+  end
+
   create_table "services", force: :cascade do |t|
     t.string   "description"
     t.integer  "user_client_id"
@@ -63,6 +71,11 @@ ActiveRecord::Schema.define(version: 20170306173306) do
     t.integer  "status"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+  end
+
+  create_table "sliders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sobres", force: :cascade do |t|
@@ -83,7 +96,7 @@ ActiveRecord::Schema.define(version: 20170306173306) do
     t.integer  "city_id"
     t.integer  "category_id"
     t.integer  "kind"
-    t.integer  "status",                 default: 1
+    t.integer  "status",                 default: 0
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.string   "email",                  default: "",    null: false
@@ -106,7 +119,6 @@ ActiveRecord::Schema.define(version: 20170306173306) do
     t.index ["category_id"], name: "index_users_on_category_id"
     t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["professional_id"], name: "index_users_on_professional_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

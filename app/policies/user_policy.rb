@@ -24,6 +24,18 @@ class UserPolicy
     @user.kind=="administrator" and @user.status="ativo"
   end
 
+  def createSlider?
+    @user.kind=="administrator" and @user.status="ativo"
+  end
+
+  def destroySlider?
+    @user.kind=="administrator" and @user.status="ativo"
+  end
+
+  def updateSlider?
+    @user.kind=="administrator" and @user.status="ativo"
+  end
+
   def seeFixo?
     @user.kind=="administrator" and @user.status="ativo"
   end
