@@ -8,6 +8,18 @@ class UserPolicy
     @category = category
   end
 
+  def seePhone?
+    @user.kind=="administrator" and @user.status="ativo"
+  end
+
+  def seeFixo?
+    @user.kind=="administrator" and @user.status="ativo"
+  end
+
+  def seeWhatsapp?
+    @user.kind=="administrator" and @user.status="ativo"
+  end
+
   def updateCategory?
     @user.kind=="administrator" and @user.status="ativo"
   end

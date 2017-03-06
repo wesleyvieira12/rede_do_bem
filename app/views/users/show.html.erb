@@ -23,6 +23,17 @@
   <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
   <dd><%= @user.status %></dd>
 
+  <dt><strong>Contatos</strong></dt>
+  <% if policy(:user).seePhone? %>
+    <dd><%= @user.phone %></dd>  
+  <% end %>
+  <% if policy(:user).seeFixo? %>
+    <dd><%= @user.fixo %></dd> 
+  <% end %> 
+  <dd><%= @user.whatsapp %></dd>  
+  <% if policy(:user).seeWhatsapp? %>
+    <dd><%= @user.email %></dd>  
+  <% end %>
   
 </dl>
 
