@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 20170306182033) do
     t.integer  "city_id"
     t.integer  "category_id"
     t.integer  "kind"
-    t.integer  "status",                 default: 0
+    t.integer  "status",                 default: 1
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.string   "email",                  default: "",    null: false
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(version: 20170306182033) do
     t.index ["category_id"], name: "index_users_on_category_id"
     t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["professional_id"], name: "index_users_on_professional_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
