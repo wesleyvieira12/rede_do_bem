@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   get 'users/novo/:id', to:'users#change', as: 'mostrar_usuario'
 
+  get 'users/show', to:'users#desactive', as: 'desactive_usuario'
+
   get 'comments/report/:id', to:'users#report', as: 'report_comentario'
 
   #TELA INICIAL - Escolha das cidades

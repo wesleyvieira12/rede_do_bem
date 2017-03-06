@@ -15,6 +15,11 @@ class UsersController < ApplicationController
     current_user.kind == "administrator"
   end
 
+  def desactive
+    @user = User.find_by_id(params[:id].to_i)
+    @user.status = "desativo"
+  end
+
   def check
     if current_user.status=="inativo"
       sign_out(current_user)
