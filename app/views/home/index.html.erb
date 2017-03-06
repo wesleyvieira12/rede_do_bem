@@ -55,7 +55,12 @@
                     <div class="single-service">
                         
                                 <%= link_to busca_category_id_path(c.category_id) do %>
+                                <%if c.category.foto?%>
                                 <%= image_tag(c.category.foto.pic.url, class: "img-thumbnail img-responsive")%>
+                                <% else %>
+                                <image src="img/empty.png" class="img-responsive img-thumbnail"></image>
+                                <% end %>
+    
                                 <% end %>
                         <h3 style="margin-top: 0px;"><%= c.category.name%></h3>
                         
@@ -74,7 +79,8 @@
                     <h2>Profissionais recentes</h2>
                     <h4>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</h4>
                 </div>
-                <% @users.each do |u|%>            
+                <% @users.each do |u|%>  
+                <% if u.destaque?%>          
                 <%= link_to show_professional_path(u) do%>
                 <div class="col-md-2 single-member col-sm-4">
                     <div class="person">
@@ -88,6 +94,7 @@
                     </div>
                 </div>
                 <% end %>
+                <%end%>
                 <% end %>
                               
         </div>
