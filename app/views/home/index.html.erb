@@ -6,38 +6,28 @@
                     <div class="header-backup"></div>
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
-                        <div class="item active">
-                            <img src="img/slide-one.jpg" alt="">
-                            <div class="carousel-caption">
-                                <h1>Texto</h1>
-                                <p>Descrição</p>
-                                <button>Mais</button>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img src="img/slide-two.jpg" alt="">
-                            <div class="carousel-caption">
-                                <h1>Texto</h1>
-                                <p>Descrição</p>
-                                <button>Mais</button>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img src="img/slide-three.jpg" alt="">
-                            <div class="carousel-caption">
-                                <h1>Texto</h1>
-                                <p>Descrição</p>
-                                <button>Mais</button>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img src="img/slide-four.jpg" alt="">
-                            <div class="carousel-caption">
-                                <h1>Texto</h1>
-                                <p>Descrição</p>
-                                <button>Mais</button>
-                            </div>
-                        </div>
+                        <% var = 0 %>
+
+                        <% @photos.each do |photo| %>
+                        
+                            <% if var==0 %>
+
+                                <div class="item active">
+                                    <%= image_tag(photo.figure_url(:great)) if photo.figure? %>
+                                </div>
+
+                                <% var = var+1 %>
+
+                            <% else %>
+
+                                <div class="item">
+                                    <%= image_tag(photo.figure_url(:great)) if photo.figure? %>
+                                </div>
+
+                            <% end %>
+
+                        <% end %>
+
                     </div>
                     <!-- Controls -->
                     <a class="left carousel-control" href="#carouselHacked" role="button" data-slide="prev">
