@@ -12,9 +12,10 @@
 //
 
 //= require custom
-//= require jquery_2
+//= require jquery
+//= require SmoothScroll
 //= require bootstrap_min.js
-
+//= require style
 
 
 
