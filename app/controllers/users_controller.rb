@@ -15,6 +15,11 @@ class UsersController < ApplicationController
     current_user.kind == "administrator"
   end
 
+  def desactive
+    @user = User.find_by_id(params[:id].to_i)
+    @user.status = "desativo"
+  end
+
   def check
     if current_user.status=="inativo"
       sign_out(current_user)
@@ -100,6 +105,8 @@ class UsersController < ApplicationController
       end
     end
 
+    if current_user.kind=="administrator"
+
     respond_to do |format|
 
       if @user_here.status=="ativo"
@@ -115,6 +122,29 @@ class UsersController < ApplicationController
       end
 
     end
+
+  elsif current_user.kind=="professional" and @user_here.actived==false
+
+    @user_here.actived = true
+
+    respond_to do |format|
+
+      if @user_here.status=="ativo"
+        @user_here.status="inativo"
+        @user_here.save
+        format.html { redirect_to user_path, notice: 'Status Alterado.' }
+        format.json { render :show, status: :created, location: user_path }
+      else
+        @user_here.status="ativo"
+        @user_here.save
+        format.html { redirect_to user_path, notice: 'Status Alterado.' }
+        format.json { render :show, status: :created, location: user_path }
+      end
+
+    end
+
+  end
+
   end
 
   # GET /users/new

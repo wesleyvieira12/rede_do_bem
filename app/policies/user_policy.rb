@@ -125,8 +125,8 @@ class UserPolicy
     @user.kind=="professional" or @user.kind=="cliente" and @user.status="ativo"
   end
 
-  def approve?
-    @user.kind=="professional" and @user.status="ativo"
+  def desactive?
+    @user.kind=="administrator" or @user.kind=="professional" and @user.status="ativo"
   end
 
 end

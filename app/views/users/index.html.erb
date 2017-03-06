@@ -63,7 +63,7 @@
 
             <% end %>
 
-            <% if policy(:user).approve? and user.status=="inativo" %>
+            <% if policy(:user).desactive? and user.status=="inativo" and user.actived==false %>
               <%= link_to "Ativar",
                             mostrar_usuario_path(user.id),
                             :class => 'btn btn-primary btn-xs' %>
@@ -120,8 +120,12 @@
 
             <% end %>
 
-            <% if policy(:user).approve? and user.status=="inativo" %>
-              <%= link_to "Ativar",
+            <% if policy(:user).desactive? and user.status=="ativo" %>
+              <%= link_to "Desativar",
+                            mostrar_usuario_path(user.id),
+                            :class => 'btn btn-primary btn-xs' %>
+            <% elsif policy(:user).desactive? and user.status=="inativo" %>
+            <%= link_to "Ativar",
                             mostrar_usuario_path(user.id),
                             :class => 'btn btn-primary btn-xs' %>
             <% end %>
@@ -135,6 +139,13 @@
   <% end %>
 
 </table>
+
+<% if policy(:user).createUser? %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_user_path,
+            :class => 'btn btn-primary' %>
+
+<% end %>
 
 <% if policy(:user).createUser? %>
 <%= link_to t('.new', :default => t("helpers.links.new")),
