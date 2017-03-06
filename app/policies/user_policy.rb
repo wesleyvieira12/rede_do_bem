@@ -16,6 +16,10 @@ class UserPolicy
     @user.kind=="administrator" and @user.status="ativo"
   end
 
+  def destacar?
+    @user.kind=="administrator" and @user.status="ativo"
+  end
+
   def seeWhatsapp?
     @user.kind=="administrator" and @user.status="ativo"
   end
