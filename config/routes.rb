@@ -2,9 +2,10 @@ Rails.application.routes.draw do
 
   resources :contatos
   resources :image_services
+
   devise_for :users, controllers: {
         registrations: 'users/registrations'
-      }
+      },:path => 'u'
 
   resources :states
   resources :cities

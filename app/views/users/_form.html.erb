@@ -1,4 +1,4 @@
-<%= form_for @user, :html => { :class => "form-horizontal user" }, method: :put  do |f| %>
+<%= form_for @user, :html => { :class => "form-horizontal user" }  do |f| %>
 
   <% if @user.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
@@ -29,10 +29,32 @@
         <%= f.file_field :perfil %>
         </div>
       </div>
+
   <div class="form-group">
     <%= f.label :email, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.email_field :email, :class => 'form-control' %>
+    </div>
+    </div>
+
+    <div class="form-group">
+    <%= f.label :phone, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :phone, :class => 'form-control' %>
+    </div>
+    </div>
+
+    <div class="form-group">
+    <%= f.label :fixo, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :fixo, :class => 'form-control' %>
+    </div>
+    </div>
+
+    <div class="form-group">
+    <%= f.label :whatsapp, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :whatsapp, :class => 'form-control' %>
     </div>
     
   </div>
@@ -75,11 +97,10 @@
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit "Atualizar", :class => 'btn btn-primary' %>
+      <%= f.submit "Criar", :class => 'btn btn-primary' %>
     </div>
   </div>
   
-
 <% end %>
 
 <script type="text/javascript">

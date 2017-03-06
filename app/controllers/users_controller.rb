@@ -161,14 +161,14 @@ class UsersController < ApplicationController
   def create
 
     @user = User.new(user_params)
+    @user.status="ativo"
+    @user.professional_id = current_user.id
 
     respond_to do |format|
 
-      @user[:status] = 1
-
       if @user.save
-        format.html { redirect_to root_path, notice: 'Usuario criado, espere a ativação do seu cadastro.' }
-        format.json { render :show, status: :created, location: root_path }
+        format.html { redirect_to users_path, notice: 'Usuário criado, espere a ativação do seu cadastro.' }
+        format.json { render :show, status: :created, location: users_path }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }

@@ -33,7 +33,7 @@ class UserPolicy
   end
 
   def createUser?
-    false
+    @user.kind=="administrator" or @user.kind=="professional" and @user.status="ativo"
   end
 
   def updateUser?
