@@ -411,6 +411,12 @@
                                     <% end %>
                                 <% end %>
 
+                                <% if policy(:user).linkSlider? %>
+                                    <%= link_to sliders_path do%>
+                                    <i class="fa fa-user fa-fw"></i> Slider
+                                    <% end %>
+                                <% end %>
+
                                 <% if policy(:user).seeSobre? %>
                                     <%= link_to sobres_path do%>
                                     <i class="fa fa-user fa-fw"></i> Sobre

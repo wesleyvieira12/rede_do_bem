@@ -165,6 +165,10 @@ class UserPolicy
     @user.kind=="administrator" and @user.status="ativo"
   end
 
+  def linkSlider?
+    @user.kind=="administrator" and @user.status="ativo"
+  end
+
   def desactive?
     @user.kind=="administrator" or @user.kind=="professional" and @user.status="ativo"
   end
