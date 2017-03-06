@@ -1,33 +1,50 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Contatos</h1>
+<%- model_class = Contato -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Message</th>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:phone) %></th>
+      <th><%= model_class.human_attribute_name(:message) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @contatos.each do |contato| %>
       <tr>
+        <td><%= link_to contato.id, contato_path(contato) %></td>
         <td><%= contato.name %></td>
         <td><%= contato.email %></td>
         <td><%= contato.phone %></td>
         <td><%= contato.message %></td>
-        <td><%= link_to 'Show', contato %></td>
-        <td><%= link_to 'Edit', edit_contato_path(contato) %></td>
-        <td><%= link_to 'Destroy', contato, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         <td><%=l contato.created_at %></td>
+        <td>
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      contato_path(contato), :class => 'btn btn-default btn-xs' %>
+
+          <% if policy(:user).destroyContact? %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      contato_path(contato),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+          <%end%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Contato', new_contato_path %>
+<!--
+<% if policy(:user).createComment? %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_comment_path,
+            :class => 'btn btn-primary' %>
+<%end%> -->

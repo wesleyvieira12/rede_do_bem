@@ -406,6 +406,14 @@
                                     <%end%>
                                 <% end %>
                             </li>
+                            <li>
+                                <% if policy(:user).linkContact? %>
+                                    <%= link_to contatos_path do%>
+                                    <i class="fa fa-user fa-fw"></i> Contatos
+                                    <% end %>
+                                <% end %>
+                                
+                            </li>
                             <!--<li>
                                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
