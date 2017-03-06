@@ -236,8 +236,11 @@
         <div class="container">
             <div class="row">
                 <h2>Sobre</h2>
-                <h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pellentesque sodales ornare. Duis in aliquet eros, faucibus auctor dui. Sed placerat pellentesque dolor ut porttitor. Phasellus fermentum quis sem mollis ultrices. Nunc est velit, auctor eget ultricies in, bibendum id enim. Curabitur nec lorem facilisis, tempor erat non, luctus leo. Sed ac dolor augue. Morbi dictum rutrum lectus, vitae pulvinar magna lacinia quis. Curabitur eget tincidunt risus. Curabitur dignissim neque vitae purus commodo tempor. Aenean quis felis sed felis ultrices aliquet. Etiam auctor arcu arcu. Mauris porta ac dolor id auctor.</p>
-                <p>Proin malesuada ultrices erat ultrices dignissim. Ut condimentum molestie maximus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin quam lectus, pharetra in neque ac, pulvinar fringilla nisl. Cras sit amet mollis est, id egestas lacus. Praesent at augue eu est mattis porta. Pellentesque luctus porttitor sem, ut porttitor orci feugiat volutpat. Curabitur hendrerit eu purus sed tincidunt. Nunc ante orci, pretium at egestas eget, condimentum a ligula. Quisque id ligula mi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque finibus vehicula quam, nec feugiat neque accumsan et. Pellentesque euismod malesuada facilisis. Donec elementum ac ligula maximus volutpat. Phasellus at consectetur arcu. Pellentesque posuere auctor pretium.</p></h3>
+                <% if @sobre!=nil %>
+                    <h3><p> <%= @sobre.description %> </p></h3>
+                <% else %>
+                    <h3><p> Cadastre um sobre </p></h3>
+                <% end %>
                 
                 
                 

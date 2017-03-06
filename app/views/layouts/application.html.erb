@@ -403,10 +403,17 @@
                                     <%end%>
                                 <% end %>
                             </li>
+                            
                             <li>
                                 <% if policy(:user).linkContact? %>
                                     <%= link_to contatos_path do%>
                                     <i class="fa fa-user fa-fw"></i> Contatos
+                                    <% end %>
+                                <% end %>
+
+                                <% if policy(:user).seeSobre? %>
+                                    <%= link_to sobres_path do%>
+                                    <i class="fa fa-user fa-fw"></i> Sobre
                                     <% end %>
                                 <% end %>
                                 

@@ -6,6 +6,8 @@ class HomeController < ApplicationController
 	def index
 		#Usuarios de uma determinada cidade
 
+		@sobre = Sobre.first
+
 		@images_all = ImageService.all
 		@images = Array.new
 

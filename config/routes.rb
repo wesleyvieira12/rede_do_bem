@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :sobres
   resources :contatos
   resources :image_services
 
