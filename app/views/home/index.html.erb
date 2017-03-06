@@ -58,40 +58,17 @@
             <div class="row">
                 <h2>Atividades</h2>
                 <h4>Clique em alguma atividade para visualizar os profissionais</h4>
+                <% @users.each do |u| %>
                 <div class="col-md-3 col-sm-6">
                     <div class="single-service">
                         
                                 <img class="img-thumbnail img-responsive" src="img/item1.jpg" alt="">
                             
-                        <h3 style="margin-top: 0px;">Medico</h3>
+                        <h3 style="margin-top: 0px;"><%= u.category.name%></h3>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-service">
-                        
-                            
-                                <img class="img-thumbnail img-responsive" src="img/item1.jpg" alt="">
-                            
-                       
-                        <h3 style="margin-top: 0px;">Desenvolvedor</h3>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-service">
-                        
-                            
-                                <img class="img-thumbnail img-responsive" src="img/item1.jpg" alt="">
-                            
-                        
-                        <h3 style="margin-top: 0px;">Carpinteiro</h3>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-service">
-                    <img class="img-thumbnail img-responsive" src="img/item1.jpg" alt=""> 
-                    <h3 style="margin-top: 0px;">Dentista</h3>
-                    </div>
-                </div>
+                <% end %>
+               
             </div>
         </div>
     </section><!-- end of service section -->
@@ -103,71 +80,22 @@
                     <h2>Profissionais recentes</h2>
                     <h4>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</h4>
                 </div>
+                <% @users.each do |u|%>            
+                <%= link_to show_professional_path(u) do%>
                 <div class="col-md-2 single-member col-sm-4">
                     <div class="person">
-                        <img class="img-responsive" src="img/member1.jpg" alt="member-1">
+                    <%= image_tag(u.perfil.pic.url, class: "img-responsive") if u.perfil? %>
+                        
                     </div>
                     <div class="person-detail">
                         <div class="arrow-bottom"></div>
-                        <h3>Beltrano</h3>
-                        <p>Atividade: Desenvolvedor </p>
+                        <h3><%=u.name%></h3>
+                        <p>Atividade: <%= u.category.name %> </p>
                     </div>
                 </div>
-                <div class="col-md-2 single-member col-sm-4">
-                    <div class="person">
-                        <img class="img-responsive" src="img/member2.jpg" alt="member-1">
-                    </div>
-                    <div class="person-detail">
-                        <div class="arrow-bottom"></div>
-                        <h3>Maria</h3>
-                        <p>Atividade: Medico </p>
-                    </div>
-                </div>
-                <div class="col-md-2 single-member col-sm-4">
-                    <div class="person">
-                        <img class="img-responsive" src="img/member3.jpg" alt="member-1">
-                    </div>
-                    <div class="person-detail">
-                        <div class="arrow-bottom"></div>
-                        <h3>Carlos</h3>
-                        <p>Atividade: Enfermeiro </p>
-                    </div>
-                </div>
-                <div class="col-md-2 single-member col-sm-4">
-                    <div class="person">
-                        <img class="img-responsive" src="img/member4.jpg" alt="member-1">
-                    </div>
-                    <div class="person-detail">
-                        <div class="arrow-bottom"></div>
-                        <h3>Sabrina</h3>
-                        <p>Atividade: Auxiliar </p>
-                    </div>
-                </div>
-                <div class="col-md-2 single-member col-sm-4">
-                    <div class="person">
-                        <img class="img-responsive" src="img/member5.jpg" alt="member-1">
-                    </div>
-                    <div class="person-detail">
-                        <div class="arrow-bottom"></div>
-                        <h3>Nome</h3>
-                        <p>Atividade: </p>
-                    </div>
-                </div>
-                <div class="col-md-2 single-member col-sm-4">
-                    <div class="person">
-                        <img class="img-responsive" src="img/member6.jpg" alt="member-1">
-                    </div>
-                    <div class="person-detail">
-                        <div class="arrow-bottom"></div>
-                        <h3>Nome</h3>
-                        <p>Atividade: </p>
-                    </div>
-                </div>
-
-                
-
-                
-                
+                <% end %>
+                <% end %>
+                              
         </div>
     </section><!-- end of team section -->
 
@@ -179,54 +107,55 @@
             <div class="row">
                 <h2>Portifolio</h2>
                 <h4> Fotos recentes dos serviços executados pelos profissionais</h4>
+                <% @images.each do |i|%>
+                <a href="#" data-toggle="modal" data-target="#<%= i.id %>">
                 <div class="col-md-4 col-sm-6">
                     <div class="single-about-detail clearfix">
                         <div class="about-img">
-                            <img class="img-responsive" src="img/item1.jpg" alt="">
+                            <%= image_tag(i.avatar.url, class: "img-responsive") if i.avatar? %>
                         </div>
                         <div class="about-details">
                             
-                            <h3 class="text-center">Serviço</h3>
+                            <h3 class="text-center"><%= i.service.description%></h3>
                             <p>
-                                Profissional:
+                                Profissional: <%= i.service.user_professional.name%>
                                 <br>
-                                Cliente:
+                                Cliente: <%= i.service.user_client.name%>
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-about-detail">
-                        <div class="about-img">
-                            <img class="img-responsive" src="img/item2.jpg" alt="">
-                        </div>
-                        <div class="about-details">
-                            
-                            <h3 class="text-center">Serviço</h3>
-                            <p>
-                                Profissional:
-                                <br>
-                                Cliente:
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-about-detail">
-                        <div class="about-img">
-                            <img class="img-responsive" src="img/item3.jpg" alt="">
-                        </div>
-                        <div class="about-details">
-                            
-                            <h3 class="text-center">Serviço</h3>
-                            <p>
-                                Profissional:
-                                <br>
-                                Cliente:
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                </a>
+                 <!-- Modal -->
+  <div class="modal fade bs-example-modal-lg" id="<%= i.id%>" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p></p>
+          <%= image_tag(i.avatar.url, class: "img-responsive") if i.avatar? %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+                <% end %>
+
+                
+
+
+
+
+
+                
             </div>
         </div>
     </section><!-- end of protifolio section -->

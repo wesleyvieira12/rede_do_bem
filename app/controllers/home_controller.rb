@@ -4,23 +4,28 @@ class HomeController < ApplicationController
 	before_action :set_busca, only: [:index, :busca, :show_professional,  :show_service]
 
 	def index
-		#Usuarios de uma determinada cidade
+		
 
-		@images_all = ImageService.all
+		@images_all = ImageService.order("id DESC")
 		@images = Array.new
 
 		@images_all.each do |image|
-			@images.push(image)
+			if image.service.user_professional.city_id == @city.id
+				@images.push(image)
 
-			if @images.count>7
-				break
+				if @images.count>7
+					break
+				end
 			end
 		end
-		
+
+		#Usuarios de uma determinada cidade
+		#kind: 0(cliente), 1(professional), 2(administrator)
 		@users = @q.result().where(kind:1, status: "ativo", city_id: @city)
 		@users = @users.joins("INNER JOIN categories c ON users.category_id = c.id").distinct
 
 		@comments = Comment.joins("INNER JOIN services s ON comments.service_id = s.id INNER JOIN users u ON u.id = s.user_professional_id AND u.city_id = #{@city.id} ").order("id DESC").limit(5)
+
 	end
 
 	def busca
