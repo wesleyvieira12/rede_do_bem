@@ -1,42 +1,23 @@
-<div class="row">
-	
-	<div class="col-sm-6 col-sm-offset-3">
-	<div class="panel" style="box-shadow:9px 7px 5px rgba(50, 50, 50, 0.77); color: #000;">
-  <div class="panel-heading">
-    <h3 class="panel-title"><i class="fa fa-search"></i>Buscar profissionais</h3>
-  </div>
-  <div class="panel-body">
-  <%= search_form_for @q, class: "form-inline", url: busca_path, html: { method: :post } do |f| %>
-    <div class="form-group">
-		<label>Categoria</label>
-        <%= f.select :category_id_eq, options_from_collection_for_select(@categories, "id", "name"), {include_blank: true}, {class: 'form-control'}%>
-	</div>
-	<div class="form-group ">
-		<label>Nome</label>
-		<%= f.search_field :name_cont %>
-	</div>
-	
-	
-		<%= f.submit class: "btn btn-info", value: "Pesquisar" %>
-	<% end %>
-	</div>
-  </div>
-</div>
-</div>
-<div class="container">
-	
+<div style="background: #009999  ; padding: 10em 0 6em 0;">
+<div class="container" >
+  
 	<div class="row">
-		  <div class="col-sm-4" style="background:#D3D3D3">
-      <h1>Dados do profissional</h1>
-      <hr>
-      <ul>
-        <%= image_tag(@user.perfil.pic.url) if @user.perfil? %>
-        <br><br>
-        <li><strong>Nome:</strong> <%= @user.name%></li>
-        <li><strong>E-mail:</strong> <%= @user.email%></li>
-        <li><strong>Categoria:</strong> <%= @user.category.name%></li>
-      </ul>
+		  <div class="text-center" >
+      
+        <center>
+        <%= image_tag(@user.perfil.pic.url, class: "img-responsive img-circle") if @user.perfil? %>
+        </center>
+        <br>
+        <h3 style="color: #fff;">
+        <strong>Nome:</strong> <%= @user.name%> - <strong>E-mail:</strong> <%= @user.email%> - <strong>Atividade:</strong> <%= @user.category.name%>
+        </h3>
+      
       </div>
+  </div>
+  </div>
+  </div>
+  <div class="container">
+  <div class="row">
       <div class="col-sm-7 col-sm-offset-1">
       <h1>Serviços</h1>
       <hr>
@@ -44,17 +25,21 @@
       <div class="col-sm-6">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h5><i class="fa fa-fw fa-check"></i> <%= s.description%></h5>
+                        <h4><i class="fa fa-fw fa-check"></i> <%= s.description%></h4>
                     </div>
                     <div class="panel-body">
-                        <p>Cliente:  <%= s.user_client.name%></p>
+                        <h4>
+                        Cliente:  <%= s.user_client.name%>
+                        </h4>
                         <%= link_to "Mais informações", show_service_path(s), class: "btn btn-primary"%>
+
                     </div>
                 </div>
       </div>
       <% end %>
 
       </div>
+      
             
 		
 		

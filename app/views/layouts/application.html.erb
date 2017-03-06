@@ -54,7 +54,7 @@
             <div class="row">
                 <div class="col-xs-5 header-logo">
                     <br>
-                    <a href="index.html"><img src="img/logo.png" alt="" class="img-responsive logo"></a>
+                    <%= link_to root_path do%><img src="../../img/logo.png" alt="" class="img-responsive logo"><%end%>
                 </div>
 
                 <div class="col-md-7">
@@ -87,8 +87,10 @@
                            <%=  "#{@city.name}-#{@city.state.name}"%><small style=" font-size: 16px;">Alterar</small>
                            <% end %>
                             </li>
+                            <% if action_name=="index"%>
                             <li><a class="menu" href="#about">Sobre</a></li>
                             <li><a class="menu" href="#contact"> Contato</a></li>
+                            <% end%>
                           </ul>
                         </div><!-- /navbar-collapse -->
                       </div><!-- / .container-fluid -->
