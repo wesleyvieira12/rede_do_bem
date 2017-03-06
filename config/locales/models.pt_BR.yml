@@ -7,6 +7,9 @@ pt_BR:
       city:
         one: Cidade
         other: Cidades
+      contato:
+        one: Contato
+        other: Contatos
       comment:
         one: Comentário
         other: Comentários

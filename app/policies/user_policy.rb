@@ -44,6 +44,10 @@ class UserPolicy
     false
   end
 
+  def destroyContact?
+    @user.kind=="administrator" and @user.status="ativo"
+  end
+
   def createCity?
     @user.kind=="administrator" and @user.status="ativo"
   end
@@ -123,6 +127,10 @@ class UserPolicy
 
   def linkReport?
     @user.kind=="professional" or @user.kind=="cliente" and @user.status="ativo"
+  end
+
+  def linkContact?
+    @user.kind=="administrator" and @user.status="ativo"
   end
 
   def desactive?
