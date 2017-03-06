@@ -6,6 +6,7 @@ class ContatosController < ApplicationController
   def index
     @q = Contato.ransack(params[:q])
     @contatos = @q.result(distinct: true)
+    @contatos = @contatos.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /contatos/1
