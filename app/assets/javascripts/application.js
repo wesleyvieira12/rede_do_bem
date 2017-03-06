@@ -13,8 +13,6 @@
 
 //= require custom
 //= require jquery_2
-//= require maps
-//= require gmaps
 //= require SmoothScroll
 //= require bootstrap_min.js
 //= require style
