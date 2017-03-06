@@ -1,62 +1,86 @@
-<div class="row">
-	
-	<div class="col-sm-6 col-sm-offset-3">
-	<div class="panel" style="box-shadow:9px 7px 5px rgba(50, 50, 50, 0.77); color: #000;">
-  <div class="panel-heading">
-    <h3 class="panel-title"><i class="fa fa-search"></i>Buscar profissionais</h3>
+
+<div style="padding: 10em 0 6em 0;">
+<hr>
+<div class="container">
+<!-- portifolio section -->
+    <section class="about" id="protifolio">
+        <div class="container">
+            <div class="row">
+                <h2><%= @service.description%></h2>
+                <h4> Fotos do serviço do cliente: <%= @service.user_client.name%> </h4>
+                <% @images.each do |i|%>
+                <a href="#" data-toggle="modal" data-target="#<%= i.id %>">
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-about-detail clearfix">
+                        <div class="about-img">
+                            <%= image_tag(i.avatar.url, class: "img-responsive") if i.avatar? %>
+                        </div>
+                        
+                    </div>
+                </div>
+                </a>
+                 <!-- Modal -->
+  <div class="modal fade bs-example-modal-lg" id="<%= i.id%>" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p></p>
+          <%= image_tag(i.avatar.url, class: "img-responsive") if i.avatar? %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+      
+    </div>
   </div>
-  <div class="panel-body">
-  <%= search_form_for @q, class: "form-inline", url: busca_path, html: { method: :post } do |f| %>
-    <div class="form-group">
-		<label>Categoria</label>
-        <%= f.select :category_id_eq, options_from_collection_for_select(@categories, "id", "name"), {include_blank: true}, {class: 'form-control'}%>
-	</div>
-	<div class="form-group ">
-		<label>Nome</label>
-		<%= f.search_field :name_cont %>
-	</div>
-	
-	
-		<%= f.submit class: "btn btn-info", value: "Pesquisar" %>
-	<% end %>
-	</div>
-  </div>
-</div>
+                <% end %>
+
+                
+
+
+
+
+
+                
+            </div>
+        </div>
+    </section><!-- end of protifolio section -->
 </div>
 <div class="container">
-
-  <h2> <%= @service.description %> </h2>
-
-  <div class="row">
-
-            <% @images.each do |image| %>
-
-              <div class="col-sm-3 portfolio-item">
-                
-                <%= image_tag(image.avatar.pic.url) if image.avatar? %>
-
-              </div>
-
-            <% end %>               
-  </div>
   <h3><span class="glyphicon glyphicon-comment"></span> Comentários</h3>
-            <table class="table">
-            <thead>
-              <tr>
-                <th>Usuário</th>
-                <th>Comentário</th>
-                <th>Data</th>
-              </tr>
-            </thead>
+            
             <% @comments.each do |c|%>  
-              <tbody>
-                <tr>
-                  <th><%=@service.user_client.name%></th>
-                  <th><%= c.description%></th>
-                  <th><%= c.created_at.strftime("%d/%m/%Y, %H:%M")%></th>
-                </tr>
-              </tbody>
+            
+              <div class="col-sm-1" style="margin: 1.5em 0 0 1em ;">
+                <%= image_tag(@service.user_client.perfil.thumb.url, class: "img-responsive") if @service.user_client.perfil? %>
+                <% if !@service.user_client.perfil?%>
+                <image src="../../img/empty.png" height="60px"/>
+                <% end %>
+              </div>
+              <div class="col-sm-9">
+                  <h3>
+                    <strong>
+                      <%=@service.user_client.name%> - <%= c.created_at.strftime("%d/%m/%Y, %H:%M")%>
+                    </strong>
+                  </h3>                
+                  <h4>
+                    <em>
+                      <%= c.description%>
+                    </em>
+                  </h4>
+                
+              </div>
+        
+            
             <% end %>
             
-            </table>
+            
+</div>
 </div>
