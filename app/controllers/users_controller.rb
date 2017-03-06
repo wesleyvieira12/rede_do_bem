@@ -123,7 +123,7 @@ class UsersController < ApplicationController
 
     end
 
-  elsif current_user.kind=="professional" and @user_here.actived==false
+  elsif current_user.kind=="professional" and @user_here.professional_id==current_user.id
 
     @user_here.actived = true
 
