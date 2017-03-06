@@ -5,8 +5,10 @@ class HomeController < ApplicationController
 
 	def index
 		
+		@sobre = Sobre.first
 
 		@images_all = ImageService.order("id DESC")
+
 		@images = Array.new
 
 		@images_all.each do |image|

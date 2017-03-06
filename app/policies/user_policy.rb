@@ -12,6 +12,18 @@ class UserPolicy
     @user.kind=="administrator" and @user.status="ativo"
   end
 
+  def createSobre?
+    @user.kind=="administrator" and @user.status="ativo"
+  end
+
+  def destroySobre?
+    @user.kind=="administrator" and @user.status="ativo"
+  end
+
+  def updateSobre?
+    @user.kind=="administrator" and @user.status="ativo"
+  end
+
   def seeFixo?
     @user.kind=="administrator" and @user.status="ativo"
   end
@@ -21,6 +33,10 @@ class UserPolicy
   end
 
   def seeWhatsapp?
+    @user.kind=="administrator" and @user.status="ativo"
+  end
+
+  def seeSobre?
     @user.kind=="administrator" and @user.status="ativo"
   end
 
