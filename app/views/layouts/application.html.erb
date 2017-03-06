@@ -78,9 +78,6 @@
                                 <li><%= link_to "Minha conta", painel_path%></li>
                            <% else %>
                             <li> <%= link_to "Entrar",new_user_session_path%></li>
-                            <li> 
-                                <%= link_to "Cadastrar-se",new_user_registration_path%>
-                            </li>
                             <% end %>
                             <li>
                             <%= link_to  alterar_cidade_path(1) do %>

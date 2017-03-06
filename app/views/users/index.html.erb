@@ -65,7 +65,7 @@
               <%= link_to "Desativar",
                             mostrar_usuario_path(user.id),
                             :class => 'btn btn-primary btn-xs' %>
-            <% elsif policy(:user).desactive? and user.status=="inativo" %>
+            <% elsif policy(:user).desactive? and user.status=="inativo" and user.professional_id==current_user.id %>
             <%= link_to "Ativar",
                             mostrar_usuario_path(user.id),
                             :class => 'btn btn-primary btn-xs' %>
