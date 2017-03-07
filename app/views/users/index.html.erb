@@ -132,8 +132,12 @@
                             :class => 'btn btn-primary btn-xs' %>
             <% end %>
 
-            <% if policy(:user).destacar? and user.status=="ativo" and user.kind=="professional" %>
+            <% if policy(:user).destacar? and user.destaque==false and user.status=="ativo" and user.kind=="professional" %>
                 <%= link_to "Destacar",
+                            destacar_usuario_path(user.id),
+                            :class => 'btn btn-success btn-xs' %>
+            <% elsif policy(:user).destacar? and user.destaque==true and user.status=="ativo" and user.kind=="professional" %>
+            <%= link_to "Tirar destaque",
                             destacar_usuario_path(user.id),
                             :class => 'btn btn-success btn-xs' %>
             <% end %>

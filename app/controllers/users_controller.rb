@@ -17,15 +17,19 @@ class UsersController < ApplicationController
 
   def destacar
     @user = User.find_by_id(params[:id].to_i)
-    @user.destaque = true
+    if(@user.destaque?)
+      @user.destaque = false
+    else
+      @user.destaque = true
+    end
     
     respond_to do |format|
 
       if @user.save
-        format.html { redirect_to user_path(@user), notice: 'Profissional em Destaque.' }
+        format.html { redirect_to user_path(@user), notice: 'Profissional alterado com sucesso.' }
         format.json { render :show, status: :created, location: user_path(@user) }
       else
-        format.html { redirect_to user_path(@user), notice: 'Profissional não destacado.' }
+        format.html { redirect_to user_path(@user), notice: 'Profissional alterado com sucesso.' }
         format.json { render :show, status: :created, location: user_path(@user) }
       end
 
