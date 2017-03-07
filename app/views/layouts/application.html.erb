@@ -7,7 +7,7 @@
     <title><%= content_for?(:title) ? yield(:title) : "Rede do Bem" %></title>
 
     <%= csrf_meta_tags %>
-    <% if controller_name == 'tela_inicial' || controller_name=='home' %>
+    <% if controller_name=='home' %>
         <%= stylesheet_link_tag "application", :media => "all" %>
     <% else %>
 
@@ -74,14 +74,10 @@
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                           
                           <ul class="nav navbar-nav navbar-right">
-                           <% if user_signed_in? %>
-                                <li><%= link_to "Minha conta", painel_path%></li>
-                           <% else %>
-                            <li> <%= link_to "Entrar",new_user_session_path%></li>
-                            <% end %>
-                            <li>
+                          <li>
                             <%= link_to  alterar_cidade_path(1) do %>
-                           <%=  "#{@city.name}-#{@city.state.name}"%> <small style=" font-size: 16px;">Alterar</small>
+                            <span style="color: #00CCFF">
+                           <%=  "#{@city.name}-#{@city.state.name}"%></span> <small style=" font-size: 16px;">Alterar</small>
                            <% end %>
                             </li>
                             <% if action_name=="index"%>
@@ -110,6 +106,18 @@
                     <a href=""><i class="fa fa-facebook"></i></a>
                     <a href=""><i class="fa fa-twitter"></i></a>
                     <a href=""><i class="fa fa-skype"></i></a>
+                    <% if !user_signed_in? %>
+                                <%= link_to new_user_session_path do %>
+                                <i class="fa fa-lock"></i>
+                                <% end %>
+                           <% else %>
+                           <%= link_to painel_path do %>
+                                <i class="fa fa-unlock"></i>
+                                <% end %>
+                            
+                            <% end %>
+                            
+                    
                 </div>
             </div>
         </div>
@@ -470,7 +478,7 @@
     <% end %>  
 
 <% end %>
-<% if controller_name == 'tela_inicial' || controller_name=='home' %>
+<% if controller_name=='home' %>
 <%= javascript_include_tag "application" %>   
 <% end %> 
   </body>
