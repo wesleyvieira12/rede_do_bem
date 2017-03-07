@@ -1,19 +1,21 @@
 
-
+<div class="row">
 <li class="control-group nested-fields">
 
 	<div class="controls">
-
-	    <div class="controls">
-	    <%= f.label :figure %> <br>
+		
+	    <div class="controls col-sm-5">
+	    <%= f.label :figure %>  <strong><em> - Tamanho recomendado: 2000px x 800px</em></strong>
 	    <%= image_tag(f.object.figure_url(:thumb)) if f.object.figure? %>
     	<%= f.file_field :figure, :cols => "20", :rows => "10" %>
 	    </div>
 
-	  	<div class="controls">
-    		<%= link_to_remove_association "Remover", f %>
+	  	<div class="controls col-sm-1">
+    		<%= link_to_remove_association "Remover", f, class: "btn btn-danger" %>
   		</div>
 
+		
 	</div>
 
 </li>
+</div>

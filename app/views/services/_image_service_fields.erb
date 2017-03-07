@@ -4,7 +4,7 @@
 	<div class="controls">
 
 	    <div class="controls">
-	    <%= f.label :avatar %> <br>
+	    <%= f.label :avatar %>
 	    <%= image_tag(f.object.avatar_url(:thumb)) if f.object.avatar? %>
     	<%= f.file_field :avatar, :cols => "20", :rows => "10" %>
 	    </div>

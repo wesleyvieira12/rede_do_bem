@@ -164,6 +164,9 @@ class UserPolicy
   def linkContact?
     @user.kind=="administrator" and @user.status="ativo"
   end
+  def linkConfig?
+    @user.kind=="administrator" and @user.status="ativo"
+  end
 
   def linkSlider?
     @user.kind=="administrator" and @user.status="ativo"

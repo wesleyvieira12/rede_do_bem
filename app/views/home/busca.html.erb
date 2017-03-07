@@ -18,8 +18,12 @@
         
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                
-                    <%= image_tag(u.perfil.pic.url) if u.perfil? %>
+                    <%if u.perfil?%>
+                        <%= image_tag(u.perfil.pic.url, class: "img-responsive") %>
+                                <% else %>
+                                <image src="../img/empty.png" class="img-responsive"></image>
+                                <% end %>
+                    
                     <div class="caption">
                         <h3><%= u.name%></h3>
                         <p>Categoria: <%= u.category.name%></p>

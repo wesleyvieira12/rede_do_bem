@@ -2,11 +2,14 @@ pt_BR:
   activerecord:
     models:
       category:
-        one: Categoria
-        other: Categorias
+        one: Atividade
+        other: Atividades
       city:
         one: Cidade
         other: Cidades
+      slider:
+        one: Slider
+        other: Sliders
       sobre:
         one: Sobre
         other: Sobre
@@ -54,6 +57,12 @@ pt_BR:
         status: Status
         created_at: Criado em
         updated_at: Atualizado em
+      slider:
+        id: '#'
+        figure: Figura
+      sobre:
+        id: '#'
+        description: 'Descrição'
       state:
         id: '#'
         name: Nome

@@ -76,7 +76,7 @@
         <div class="container">
             <div class="row">
                 <div class="team-heading text-center">
-                    <h2>Profissionais recentes</h2>
+                    <h2>Profissionais em destaque</h2>
                     <h4>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</h4>
                 </div>
                 <% @users.each do |u|%>  
@@ -84,7 +84,12 @@
                 <%= link_to show_professional_path(u) do%>
                 <div class="col-md-2 single-member col-sm-4">
                     <div class="person">
-                    <%= image_tag(u.perfil.pic.url, class: "img-responsive") if u.perfil? %>
+                    <%if u.perfil?%>
+                        <%= image_tag(u.perfil.pic.url, class: "img-responsive") %>
+                                <% else %>
+                                <image src="img/empty.png" class="img-responsive"></image>
+                                <% end %>
+                    
                         
                     </div>
                     <div class="person-detail">

@@ -378,7 +378,7 @@
                             <li>
                                 <% if policy(:user).linkCategories? %>
                                     <%= link_to categories_path do%>
-                                    <i class="fa fa-cubes fa-fw"></i> Categorias
+                                    <i class="fa fa-cubes fa-fw"></i> Atividades
                                     <% end %>
                                 <% end %>
                                 
@@ -404,26 +404,34 @@
                                 <% end %>
                             </li>
                             
+                             <% if policy(:user).linkConfig? %>
                             <li>
+                                <a href="#"><i class="fa fa-cogs fa-fw"></i> Configurações<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                <li>
                                 <% if policy(:user).linkContact? %>
                                     <%= link_to contatos_path do%>
-                                    <i class="fa fa-user fa-fw"></i> Contatos
+                                    <i class="fa fa-address-book fa-fw"></i> Contatos
                                     <% end %>
                                 <% end %>
-
+                                </li>
+                                <li>
                                 <% if policy(:user).linkSlider? %>
                                     <%= link_to sliders_path do%>
-                                    <i class="fa fa-user fa-fw"></i> Slider
+                                    <i class="fa fa-television fa-fw"></i> Slider
                                     <% end %>
                                 <% end %>
-
+                                </li>
+                                <li>
                                 <% if policy(:user).seeSobre? %>
                                     <%= link_to sobres_path do%>
-                                    <i class="fa fa-user fa-fw"></i> Sobre
+                                    <i class="fa fa-book fa-fw"></i> Sobre
                                     <% end %>
                                 <% end %>
-                                
+                                </li>
+                                </ul>
                             </li>
+                            <% end %>
                             <!--<li>
                                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">

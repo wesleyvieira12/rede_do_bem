@@ -5,7 +5,12 @@
 		  <div class="text-center" >
       
         <center>
-        <%= image_tag(@user.perfil.pic.url, class: "img-responsive img-circle") if @user.perfil? %>
+        <% if @user.perfil?%>
+          <%= image_tag(@user.perfil.pic.url, class: "img-responsive img-circle") %>
+                                <% else %>
+                                <image src="../../img/empty.png" height="200" width="200" class="img-circle"></image>
+                                <% end %>
+        
         </center>
         <br>
         <h3 style="color: #fff;">

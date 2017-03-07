@@ -14,7 +14,7 @@ class PainelController < ApplicationController
 
     	@count_user = User.count
     	@count_service = Service.count
-    	@count_comment = Comment.count
+    	@count_comment = Comment.where(report: true).count
     end
   end
 

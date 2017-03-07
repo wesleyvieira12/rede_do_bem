@@ -132,7 +132,7 @@
                             :class => 'btn btn-primary btn-xs' %>
             <% end %>
 
-            <% if policy(:user).destacar? and user.status=="ativo" %>
+            <% if policy(:user).destacar? and user.status=="ativo" and user.kind=="professional" %>
                 <%= link_to "Destacar",
                             destacar_usuario_path(user.id),
                             :class => 'btn btn-success btn-xs' %>
